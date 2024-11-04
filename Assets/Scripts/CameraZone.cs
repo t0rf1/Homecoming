@@ -12,7 +12,7 @@ public class CameraZone : MonoBehaviour
         childCamera = transform.GetChild(0).gameObject;
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (collider.tag == "Player")
         {

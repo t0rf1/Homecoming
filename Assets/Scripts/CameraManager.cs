@@ -7,26 +7,16 @@ public class CameraManager : MonoBehaviour
 {
     public static List<GameObject> cameras = new List<GameObject>();
 
-    public static void FindCameras()
+    private void Awake()
     {
         cameras.AddRange(GameObject.FindGameObjectsWithTag("Camera"));
     }
 
     public static void ActivateCamera(GameObject activatedCamera)
     {
-        FindCameras();
-
         foreach (GameObject cam in cameras)
         {
-            if (cam == activatedCamera)
-            {
-                cam.SetActive(true);
-            }
-            else
-            {
-                cam.SetActive(false);
-            }
+            cam.SetActive(cam == activatedCamera);
         }
-
     }
 }

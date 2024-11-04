@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
         Vector2 movementVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
-
         //Getting rotation input
         Vector2 rotateVector = gameInput.GetRotationVector();
         transform.Rotate(0, rotateVector.x * rotateSpeed*Time.deltaTime, 0);
