@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
+
+    [SerializeField] private DialogueManager dialogueManager;
     
     ////Animations
     //public Animator animator;
@@ -18,25 +20,21 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+
         ////Animations
         //animator = GetComponent<Animator>();
         //fixedYPosition = transform.position.y;
     }
 
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        HandleInteractions();
+    }
+
     private void Update()
     {
-        //Getting movement input
-        Vector2 movementVector = gameInput.GetMovementVectorNormalized();
-        Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
-
-        //Getting rotation input
-        Vector2 rotateVector = gameInput.GetRotationVector();
-        transform.Rotate(0, rotateVector.x * rotateSpeed*Time.deltaTime, 0);
-
-        //Transform player
-        moveDirection = transform.TransformDirection(moveDirection);
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
-
+        HandleMovement();
 
         ////Animations
         //if (movementVector.magnitude != 0f)
@@ -57,11 +55,31 @@ public class Player : MonoBehaviour
         //animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         ////Animations; Lock Y position
         //Vector3 position = transform.position;
         //position.y = fixedYPosition;
         //transform.position = position;
+    }
+
+    private void HandleMovement()
+    {
+        //Getting movement input
+        Vector2 movementVector = gameInput.GetMovementVectorNormalized();
+        Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
+
+        //Getting rotation input
+        Vector2 rotateVector = gameInput.GetRotationVector();
+        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
+
+        //Transform player
+        moveDirection = transform.TransformDirection(moveDirection);
+        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    private void HandleInteractions()
+    {
+        dialogueManager.DisplayNextMessage();
     }
 }
