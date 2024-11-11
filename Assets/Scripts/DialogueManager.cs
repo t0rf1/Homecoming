@@ -10,6 +10,8 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> messages;
 
+    public bool inDialogue;
+
     void Start()
     {
         dialogueBox.SetActive(false);
@@ -18,6 +20,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        inDialogue = true;
+        Time.timeScale = 0f;
+
         dialogueBox.SetActive(true);
 
         nameText.text = dialogue.name;
@@ -46,6 +51,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        inDialogue = false;
+        Time.timeScale = 1.0f;
         dialogueBox.SetActive(false);
     }
 

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
+    private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
     
     ////Animations
@@ -71,15 +72,39 @@ public class Player : MonoBehaviour
 
         //Getting rotation input
         Vector2 rotateVector = gameInput.GetRotationVector();
-        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
 
         //Transform player
+        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
 
     private void HandleInteractions()
     {
-        dialogueManager.DisplayNextMessage();
+        if(dialogueManager.inDialogue)
+        {
+            dialogueManager.DisplayNextMessage();
+        }
+        else
+        {
+            dialogueTrigger?.TriggerDialogue();
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<DialogueTrigger>() != null)
+        {
+            dialogueTrigger = other.GetComponent<DialogueTrigger>();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<DialogueTrigger>() != null)
+        {
+            dialogueTrigger = null;
+        }
     }
 }
