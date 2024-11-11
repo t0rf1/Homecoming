@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> messages;
 
-    public bool inDialogue;
+    [System.NonSerialized] public bool inDialogue;
 
     void Start()
     {

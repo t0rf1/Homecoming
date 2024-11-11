@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using I2.Loc;
 
 [System.Serializable]
 public class Dialogue
 {
-    public string name;
+    public LocalizedString name;
 
-    [TextArea(1, 5)]
-    public string[] messages;
+    //[TextArea(1, 5)]
+    public List<LocalizedString> messages;
 }
