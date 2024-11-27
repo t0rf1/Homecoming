@@ -33,12 +33,12 @@ MonoBehaviour:
       - skoroszyt?
       Flags: 0000
       Languages_Touch: []
-    - Term: Testing/Sranie
+    - Term: Testing/Message
       TermType: 0
-      Description: Shitting
+      Description: Message
       Languages:
-      - shit
-      - kupa
+      - something
+      - "co\u015B"
       Flags: 0000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

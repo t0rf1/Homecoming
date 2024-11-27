@@ -8,6 +8,5 @@ public class Dialogue
 {
     public LocalizedString name;
 
-    //[TextArea(1, 5)]
     public List<LocalizedString> messages;
 }
