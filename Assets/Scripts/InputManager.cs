@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInput : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     public event EventHandler OnInteractAction;
+    public event EventHandler OnInventoryAction;
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -14,6 +15,12 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Enable();
 
         playerInputActions.Player.Interact.performed += Interact_performed;
+        playerInputActions.Player.Inventory.performed += Inventory_performed;
+    }
+
+    private void Inventory_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnInventoryAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

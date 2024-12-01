@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController characterController;
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private InputManager inputManager;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
@@ -21,11 +21,17 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
+        inputManager.OnInteractAction += GameInput_OnInteractAction;
+        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
 
         ////Animations
         //animator = GetComponent<Animator>();
         //fixedYPosition = transform.position.y;
+    }
+
+    private void InputManager_OnInventoryAction(object sender, System.EventArgs e)
+    {
+        Debug.Log("DZIA£A");
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -67,11 +73,11 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         //Getting movement input
-        Vector2 movementVector = gameInput.GetMovementVectorNormalized();
+        Vector2 movementVector = inputManager.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
         //Getting rotation input
-        Vector2 rotateVector = gameInput.GetRotationVector();
+        Vector2 rotateVector = inputManager.GetRotationVector();
 
         //Transform player
         transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
@@ -89,7 +95,6 @@ public class Player : MonoBehaviour
         {
             dialogueTrigger?.TriggerDialogue();
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
