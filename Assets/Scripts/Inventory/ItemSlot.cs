@@ -3,23 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using I2.Loc;
 
 public class ItemSlot : MonoBehaviour
 {
     public bool isFull;
 
-    //Item slot
-    [SerializeField] private TMP_Text quantityText;
-    [SerializeField] private Image itemImage;
+    //Item 
+    public string itemName;
+    public string itemDescription;
+    public Sprite itemSprite;
+    public int itemQuantity;
 
-    public void AddItemToSlot(string itemName, int quantity, Sprite itemSprite)
+    //Item slot
+    [SerializeField] private Image itemSlotSprite;
+    [SerializeField] private TMP_Text itemSlotQuantity;
+
+    //Item description
+    [SerializeField] private TMP_Text itemDescriptionName;
+    [SerializeField] private TMP_Text itemDescriptionDescription;
+    [SerializeField] private Image itemDescriptionImage;
+
+    public void AddItemToSlot(string itemName, string itemDescription, int quantity, Sprite itemSprite)
     {
         isFull = true;
+        
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.itemQuantity = quantity;
+        this.itemSprite = itemSprite;
 
-        quantityText.text = quantity.ToString();
-        quantityText.enabled = true;
-        itemImage.sprite = itemSprite;
-        itemImage.enabled = true;
+        itemSlotQuantity.text = quantity.ToString();
+        itemSlotQuantity.enabled = true;
+
+        itemSlotSprite.sprite = itemSprite;
+        itemSlotSprite.enabled = true;
+    }
+
+    public void ItemSelected()
+    {
+        itemDescriptionName.text = itemName.ToString();
+        itemDescriptionDescription.text = itemDescription.ToString();
+        itemDescriptionImage.sprite = itemSprite;
     }
 }

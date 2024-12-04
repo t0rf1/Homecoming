@@ -6,6 +6,7 @@ using I2.Loc;
 public class Item : MonoBehaviour
 {
     [SerializeField] private LocalizedString itemName;
+    [SerializeField] private LocalizedString itemDescription;
     [SerializeField] private int quantity;
     [SerializeField] private Sprite itemSprite;
 
@@ -16,17 +17,11 @@ public class Item : MonoBehaviour
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
         {
-            inventoryManager.AddItem(itemName, quantity, itemSprite);
+            inventoryManager.AddItem(itemName, itemDescription, quantity, itemSprite);
             Destroy(gameObject);
         }
     }
