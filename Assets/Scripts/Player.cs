@@ -22,16 +22,10 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
-        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
 
         ////Animations
         //animator = GetComponent<Animator>();
         //fixedYPosition = transform.position.y;
-    }
-
-    private void InputManager_OnInventoryAction(object sender, System.EventArgs e)
-    {
-        Debug.Log("DZIA£A");
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -80,13 +74,14 @@ public class Player : MonoBehaviour
         Vector2 rotateVector = inputManager.GetRotationVector();
 
         //Transform player
-        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
     }
 
     private void HandleInteractions()
     {
+        //Dialogues
         if(dialogueManager.inDialogue)
         {
             dialogueManager.DisplayNextMessage();

@@ -6,8 +6,8 @@ using Unity.VisualScripting;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text messageText;
 
     private Queue<string> messages;
 
