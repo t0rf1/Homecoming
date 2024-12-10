@@ -5,9 +5,10 @@ using I2.Loc;
 
 public class Item : MonoBehaviour
 {
+    //item properties
     [SerializeField] private LocalizedString itemName;
     [SerializeField] private LocalizedString itemDescription;
-    [SerializeField] private int quantity;
+    [SerializeField] private int itemQuantity;
     [SerializeField] private Sprite itemSprite;
 
     private InventoryManager inventoryManager;
@@ -21,8 +22,12 @@ public class Item : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            inventoryManager.AddItem(itemName, itemDescription, quantity, itemSprite);
-            Destroy(gameObject);
+            int leftOverItems = inventoryManager.AddItem(itemName, itemDescription, itemQuantity, itemSprite);
+            if(leftOverItems <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else itemQuantity = leftOverItems;
         }
     }
 }

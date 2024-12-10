@@ -108,8 +108,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1711621419620124353}
-  - {fileID: 5591334937417701265}
   - {fileID: 2361658376955737226}
+  - {fileID: 5591334937417701265}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -168,6 +168,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFull: 0
+  itemName:
+    mTerm: 
+    mRTL_IgnoreArabicFix: 0
+    mRTL_MaxLineLength: 0
+    mRTL_ConvertNumbers: 0
+    m_DontLocalizeParameters: 0
+  itemDescription:
+    mTerm: 
+    mRTL_IgnoreArabicFix: 0
+    mRTL_MaxLineLength: 0
+    mRTL_ConvertNumbers: 0
+    m_DontLocalizeParameters: 0
+  itemSprite: {fileID: 0}
+  itemQuantity: 0
+  maxNumberOfItems: 99
   itemSlotSprite: {fileID: 392149739862370268}
   itemSlotQuantity: {fileID: 2386700060959647586}
   itemDescriptionName: {fileID: 0}

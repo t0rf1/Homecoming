@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using I2.Loc;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -8,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryMenu;
     private bool menuActivated;
     public List<ItemSlot> itemSlots = new List<ItemSlot>();
+
+    public List<ItemSO> itemSOs = new List<ItemSO>(); 
 
     void Start()
     {
@@ -35,15 +39,34 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, string itemDescription, int quantity, Sprite itemSprite)
+    public bool UseItem(string itemName)
+    {
+        foreach(ItemSO item in itemSOs)
+        {
+            if(item.itemName == itemName)
+            {
+                bool usable = item.UseItem();
+                return usable;
+            }
+        }
+        return false;
+    }
+
+    public int AddItem(LocalizedString itemName, LocalizedString itemDescription, int itemQuantity, Sprite itemSprite)
     {
         foreach (var slot in itemSlots)
         {
-            if(!slot.isFull)
+            if (!slot.isFull && slot.itemName == itemName || slot.itemQuantity == 0)
             {
-                slot.AddItemToSlot(itemName, itemDescription, quantity, itemSprite);
-                return;
+                int leftOverItems = slot.AddItemToSlot(itemName, itemDescription, itemQuantity, itemSprite);
+                if (leftOverItems > 0)
+                {
+                    leftOverItems = AddItem(itemName, itemDescription, leftOverItems, itemSprite);
+                }
+
+                return leftOverItems;
             }
         }
+        return itemQuantity;
     }
 }
