@@ -10,11 +10,12 @@ public class ItemSlot : MonoBehaviour
 {
     public bool isFull;
 
-    [SerializeField] InventoryManager inventoryManager;
+    private InventoryManager inventoryManager;
+    [SerializeField] GameObject selectedPanel;
 
     //Item 
-    public LocalizedString itemName;
-    public LocalizedString itemDescription;
+    public string itemName;
+    public string itemDescription;
     public Sprite itemSprite;
     public int itemQuantity;
 
@@ -23,13 +24,19 @@ public class ItemSlot : MonoBehaviour
     //Item slot
     [SerializeField] private Image itemSlotSprite;
     [SerializeField] private TMP_Text itemSlotQuantity;
-
+    
     //Item description
     [SerializeField] private TMP_Text itemDescriptionName;
     [SerializeField] private TMP_Text itemDescriptionDescription;
     [SerializeField] private Image itemDescriptionImage;
 
-    public int AddItemToSlot(LocalizedString itemName, LocalizedString itemDescription, int itemQuantity, Sprite itemSprite)
+    private void Start()
+    {
+        selectedPanel.SetActive(false);
+        inventoryManager = FindObjectOfType<InventoryManager>();
+    }
+
+    public int AddItemToSlot(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite)
     {
         //Check to see if the slot is already full
         if (isFull)
@@ -75,7 +82,7 @@ public class ItemSlot : MonoBehaviour
         itemDescriptionName.text = itemName.ToString();
         itemDescriptionDescription.text = itemDescription.ToString();
         itemDescriptionImage.sprite = itemSprite;
-        UseItem();
+        selectedPanel.SetActive(true);
     }
 
     private void UseItem()

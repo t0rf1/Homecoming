@@ -6,7 +6,7 @@ using I2.Loc;
 [CreateAssetMenu]
 public class ItemSO : ScriptableObject
 {
-    public LocalizedString itemName;
+    public string itemName;
     public ItemType itemType = new ItemType();
 
     public bool UseItem()

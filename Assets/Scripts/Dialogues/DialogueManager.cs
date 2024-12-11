@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using I2.Loc;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueBox.SetActive(true);
 
+        Debug.Log(dialogue.name);
         nameText.text = dialogue.name;
 
         messages.Clear();

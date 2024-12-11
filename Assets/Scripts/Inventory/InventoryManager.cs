@@ -15,6 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        InventoryMenu.SetActive(false);
         inputManager.OnInventoryAction += InputManager_OnInventoryAction;
     }
 
@@ -52,7 +53,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public int AddItem(LocalizedString itemName, LocalizedString itemDescription, int itemQuantity, Sprite itemSprite)
+    public int AddItem(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite)
     {
         foreach (var slot in itemSlots)
         {
