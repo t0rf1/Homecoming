@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    #region Data
     [SerializeField] private InputManager inputManager;
 
     public GameObject InventoryMenu;
@@ -12,6 +13,7 @@ public class InventoryManager : MonoBehaviour
     public List<ItemSlot> itemSlots = new List<ItemSlot>();
 
     public List<ItemSO> ItemSOs = new List<ItemSO>();
+    #endregion
 
     void Start()
     {
@@ -53,16 +55,16 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public int AddItem(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite, ItemSO.ItemType itemType)
+    public int AddItem(ItemSO item, int itemQuantity)
     {
         foreach (var slot in itemSlots)
         {
-            if (!slot.isFull && slot.itemName == itemName || slot.itemQuantity == 0)
+            if (!slot.isFull && slot.item == item || slot.itemQuantity == 0)
             {
-                int leftOverItems = slot.AddItemToSlot(itemName, itemDescription, itemQuantity, itemSprite, itemType);
+                int leftOverItems = slot.AddItemToSlot(item, itemQuantity);
                 if (leftOverItems > 0)
                 {
-                    leftOverItems = AddItem(itemName, itemDescription, leftOverItems, itemSprite, itemType);
+                    leftOverItems = AddItem(item, leftOverItems);
                 }
 
                 return leftOverItems;
