@@ -1,6 +1,6 @@
+using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
-using I2.Loc;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     private bool menuActivated;
     public List<ItemSlot> itemSlots = new List<ItemSlot>();
 
-    public List<ItemSO> itemSOs = new List<ItemSO>(); 
+    public List<ItemSO> ItemSOs = new List<ItemSO>();
 
     void Start()
     {
@@ -40,11 +40,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public bool UseItem(string itemName)
+    public bool UseItem(ItemSO.ItemType itemType)
     {
-        foreach(ItemSO item in itemSOs)
+        foreach (ItemSO item in ItemSOs)
         {
-            if(item.itemName == itemName)
+            if (item.itemType == itemType)
             {
                 bool usable = item.UseItem();
                 return usable;
@@ -53,16 +53,16 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public int AddItem(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite)
+    public int AddItem(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite, ItemSO.ItemType itemType)
     {
         foreach (var slot in itemSlots)
         {
             if (!slot.isFull && slot.itemName == itemName || slot.itemQuantity == 0)
             {
-                int leftOverItems = slot.AddItemToSlot(itemName, itemDescription, itemQuantity, itemSprite);
+                int leftOverItems = slot.AddItemToSlot(itemName, itemDescription, itemQuantity, itemSprite, itemType);
                 if (leftOverItems > 0)
                 {
-                    leftOverItems = AddItem(itemName, itemDescription, leftOverItems, itemSprite);
+                    leftOverItems = AddItem(itemName, itemDescription, leftOverItems, itemSprite, itemType);
                 }
 
                 return leftOverItems;

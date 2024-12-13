@@ -1,42 +1,47 @@
+using I2.Loc;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using I2.Loc;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
+    #region Data
     public bool isFull;
 
     private InventoryManager inventoryManager;
-    [SerializeField] GameObject selectedPanel;
 
-    //Item 
+    [SerializeField] private GameObject nextSelected;
+
+    [SerializeField] int maxNumberOfItems = 99;
+
+    [Header("Item data")]
     public string itemName;
     public string itemDescription;
     public Sprite itemSprite;
     public int itemQuantity;
+    public ItemSO.ItemType itemType;
 
-    [SerializeField] int maxNumberOfItems;
-
-    //Item slot
+    [Header("Item slot")]
     [SerializeField] private Image itemSlotSprite;
     [SerializeField] private TMP_Text itemSlotQuantity;
-    
-    //Item description
+
+    [Header("Description panel")]
+    [SerializeField] private GameObject inspectPanel;
     [SerializeField] private TMP_Text itemDescriptionName;
     [SerializeField] private TMP_Text itemDescriptionDescription;
     [SerializeField] private Image itemDescriptionImage;
+    #endregion
 
     private void Start()
     {
-        selectedPanel.SetActive(false);
         inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
-    public int AddItemToSlot(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite)
+    public int AddItemToSlot(string itemName, string itemDescription, int itemQuantity, Sprite itemSprite, ItemSO.ItemType itemType)
     {
         //Check to see if the slot is already full
         if (isFull)
@@ -74,6 +79,9 @@ public class ItemSlot : MonoBehaviour
         itemSlotQuantity.text = this.itemQuantity.ToString();
         itemSlotQuantity.enabled = true;
 
+        //Update ITEM TYPE
+        this.itemType = itemType;
+
         return 0;
     }
 
@@ -82,12 +90,13 @@ public class ItemSlot : MonoBehaviour
         itemDescriptionName.text = itemName.ToString();
         itemDescriptionDescription.text = itemDescription.ToString();
         itemDescriptionImage.sprite = itemSprite;
-        selectedPanel.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(nextSelected);
     }
 
-    private void UseItem()
+    public void UseItem()
     {
-        bool usable = inventoryManager.UseItem(itemName);
+        bool usable = inventoryManager.UseItem(itemType);
 
         if (usable)
         {
@@ -101,11 +110,24 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
+    public void InspectItem()
+    {
+        inspectPanel.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(inspectPanel);
+    }
+
     private void EmptySlot()
     {
         //Clean slot
         itemSlotQuantity.enabled = false;
         itemSlotSprite.enabled = false;
+
+        //Clean item
+        itemName = "";
+        itemDescription = "";
+        itemSprite = null;
+        itemType = ItemSO.ItemType.none;
 
         //Clean description
         itemDescriptionName.text = "";

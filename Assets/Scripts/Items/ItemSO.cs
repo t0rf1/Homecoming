@@ -1,29 +1,32 @@
+using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using I2.Loc;
 
 [CreateAssetMenu]
 public class ItemSO : ScriptableObject
 {
-    public string itemName;
-    public ItemType itemType = new ItemType();
+    public LocalizedString itemName;
+    public LocalizedString itemDescription;
+    public Sprite itemSprite;
+    public ItemType itemType;
+    public bool usable;
+
+    [Header("Item Attributes")]
+    public int healthPoints;
 
     public bool UseItem()
     {
-        if (itemType == ItemType.healingItem)
+        switch (itemType)
         {
-            if(false)
-            {
-                Debug.Log("Healing...");
+            case ItemType.health:
+                //Logic behind healing
+                Debug.Log("Healing: " + healthPoints);
                 return true;
-            }
-            else
-            {
-                Debug.Log("Cannot heal...");
-                return false;
-            }
 
+            case ItemType.putSomewhere:
+                Debug.Log("Putting...");
+                return true;
         }
         return false;
     }
@@ -31,9 +34,9 @@ public class ItemSO : ScriptableObject
     public enum ItemType
     {
         none,
-        healingItem,
-        weapon,
-        puzzleUse,
-        puzzleInspect
+        health,
+        key,
+        putSomewhere,
+        weapon
     };
 }

@@ -1,29 +1,27 @@
+using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
-using I2.Loc;
 
 public class Item : MonoBehaviour
 {
-    //item properties
-    [SerializeField] private LocalizedString itemName;
-    [SerializeField] private LocalizedString itemDescription;
+    public ItemSO item;
     [SerializeField] private int itemQuantity;
-    [SerializeField] private Sprite itemSprite;
 
     private InventoryManager inventoryManager;
 
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            int leftOverItems = inventoryManager.AddItem(itemName, itemDescription, itemQuantity, itemSprite);
-            if(leftOverItems <= 0)
+            int leftOverItems = inventoryManager.AddItem(item.itemName, item.itemDescription, itemQuantity, item.itemSprite, item.itemType);
+            if (leftOverItems <= 0)
             {
                 Destroy(gameObject);
             }
