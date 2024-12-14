@@ -94,25 +94,22 @@ public class ItemSlot : MonoBehaviour
         //set COMMAND BUTTONS
         inspectCommand.interactable = true;
         useCommand.interactable = item.usable;
-        equipCommand.interactable = !item.usable;
+        equipCommand.interactable = item.equipable;
 
-        //Set SELECTED
+        //Event System set SELECTED
         EventSystem.current.SetSelectedGameObject(inspectCommand.gameObject);
+
+        inventoryManager.selectedItemSlot = this;
     }
 
     public void UseItem()
     {
-        bool usable = inventoryManager.UseItem(item.itemType);
+        itemQuantity--;
+        itemSlotQuantity.text = itemQuantity.ToString();
 
-        if (usable)
+        if (itemQuantity <= 0)
         {
-            itemQuantity--;
-            itemSlotQuantity.text = itemQuantity.ToString();
-
-            if (itemQuantity <= 0)
-            {
-                ResetSlot();
-            }
+            ResetSlot();
         }
     }
 

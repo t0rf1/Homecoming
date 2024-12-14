@@ -26,8 +26,6 @@ public class Item : MonoBehaviour
                 Destroy(gameObject);
             }
             else itemQuantity = leftOverItems;
-
-            Debug.Log(leftOverItems);
         }
     }
 }

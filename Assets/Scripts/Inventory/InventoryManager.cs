@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -18,13 +19,13 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private GameObject inspectPanel;
 
+    public ItemSlot selectedItemSlot;
     #endregion
 
     void Start()
     {
         //Get a list of all ITEM SLOTS
-        itemSlots = FindObjectsOfType<ItemSlot>().ToList();
-        itemSlots.Reverse();
+        itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
 
         InventoryMenu.SetActive(false);
         inputManager.OnInventoryAction += InputManager_OnInventoryAction;
@@ -52,17 +53,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public bool UseItem(ItemSO.ItemType itemType)
+    public void UseItem()
     {
         foreach (ItemSO item in itemSOs)
         {
-            if (item.itemType == itemType)
+            if (item.itemType == selectedItemSlot?.item.itemType)
             {
-                bool usable = item.UseItem();
-                return usable;
+                item.UseItem();
+                selectedItemSlot.UseItem();
+                selectedItemSlot = null;
             }
         }
-        return false;
     }
 
     public int AddItem(ItemSO item, int itemQuantity)
