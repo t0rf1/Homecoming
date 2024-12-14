@@ -11,6 +11,7 @@ public class ItemSO : ScriptableObject
     public Sprite itemSprite;
     public ItemType itemType;
     public bool usable;
+    public bool equipable;
 
     [Header("Item Attributes")]
     public int healthPoints;
