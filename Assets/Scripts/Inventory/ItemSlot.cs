@@ -30,7 +30,6 @@ public class ItemSlot : MonoBehaviour
     [SerializeField] private TMP_Text itemSlotQuantity;
 
     [Header("Description panel")]
-    [SerializeField] private GameObject inspectPanel;
     [SerializeField] private TMP_Text itemInspectName;
     [SerializeField] private TMP_Text itemInspectDescription;
     [SerializeField] private Image itemInspectImage;
@@ -117,13 +116,6 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    public void InspectItem()
-    {
-        inspectPanel.SetActive(true);
-
-        EventSystem.current.SetSelectedGameObject(inspectPanel);
-    }
-
     private void ResetSlot()
     {
         //Clean SLOT
@@ -132,6 +124,7 @@ public class ItemSlot : MonoBehaviour
 
         //Clean ITEM
         item = null;
+        itemQuantity = 0;
 
         //Clean INSPECT PANEL
         itemInspectName.text = "";
