@@ -9,9 +9,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
+    //Dialogues
     private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
-    
+
+    //Inventory
+    private Item itemToPickup;
+
     ////Animations
     //public Animator animator;
     //private float animationDampTime = 0.1f;
@@ -90,6 +94,10 @@ public class Player : MonoBehaviour
         {
             dialogueTrigger?.TriggerDialogue();
         }
+
+        //Item pickup
+        itemToPickup = itemToPickup?.PickupItem();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,6 +106,11 @@ public class Player : MonoBehaviour
         {
             dialogueTrigger = other.GetComponent<DialogueTrigger>();
         }
+
+        if (other.GetComponent<Item>() != null)
+        {
+            itemToPickup = other.GetComponent<Item>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -105,6 +118,11 @@ public class Player : MonoBehaviour
         if (other.GetComponent<DialogueTrigger>() != null)
         {
             dialogueTrigger = null;
+        }
+
+        if (other.GetComponent<Item>() != null)
+        {
+            itemToPickup = null;
         }
     }
 }

@@ -135,5 +135,8 @@ public class ItemSlot : MonoBehaviour
 
         //Make non selectable
         gameObject.GetComponent<Button>().enabled = false;
+
+        //Change selected ITEM SLOT
+        inventoryManager?.ResetSelectedItemSlot();
     }
 }

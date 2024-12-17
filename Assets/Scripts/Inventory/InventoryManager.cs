@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class InventoryManager : MonoBehaviour
             Time.timeScale = 0f;
             InventoryMenu.SetActive(true);
             menuActivated = true;
-            EventSystem.current.SetSelectedGameObject(itemSlots[0].gameObject);
+            ResetSelectedItemSlot();
         }
     }
 
@@ -89,5 +90,21 @@ public class InventoryManager : MonoBehaviour
         inspectPanel.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(inspectPanel);
+    }
+
+    public void SetSelectedItemSlot()
+    {
+        EventSystem.current.SetSelectedGameObject(selectedItemSlot.gameObject);
+    }
+
+    public void ResetSelectedItemSlot()
+    {
+        foreach(var slot in itemSlots)
+        {
+            if (slot.gameObject.GetComponent<Button>().enabled)
+            {
+                EventSystem.current.SetSelectedGameObject(slot.gameObject);
+            }
+        }
     }
 }

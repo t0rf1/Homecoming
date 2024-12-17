@@ -16,16 +16,15 @@ public class Item : MonoBehaviour
         inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public Item PickupItem()
     {
-        if (other.gameObject.tag == "Player")
+        int leftOverItems = inventoryManager.AddItem(item, itemQuantity);
+        if (leftOverItems <= 0)
         {
-            int leftOverItems = inventoryManager.AddItem(item, itemQuantity);
-            if (leftOverItems <= 0)
-            {
-                Destroy(gameObject);
-            }
-            else itemQuantity = leftOverItems;
+            Destroy(gameObject);
+            return null;
         }
+        else itemQuantity = leftOverItems;
+        return this;
     }
 }
