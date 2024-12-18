@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using I2.Loc;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI messageText;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text messageText;
 
     private Queue<string> messages;
 
@@ -26,6 +27,7 @@ public class DialogueManager : MonoBehaviour
 
         dialogueBox.SetActive(true);
 
+        Debug.Log(dialogue.name);
         nameText.text = dialogue.name;
 
         messages.Clear();

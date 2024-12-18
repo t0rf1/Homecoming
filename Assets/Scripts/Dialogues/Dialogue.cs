@@ -7,6 +7,5 @@ using I2.Loc;
 public class Dialogue
 {
     public LocalizedString name;
-
     public List<LocalizedString> messages;
 }

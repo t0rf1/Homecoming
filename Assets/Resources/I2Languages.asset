@@ -41,6 +41,46 @@ MonoBehaviour:
       - "co\u015B"
       Flags: 0000
       Languages_Touch: []
+    - Term: Items/FirstAidKit
+      TermType: 0
+      Description: 
+      Languages:
+      - First aid kit
+      - Apteczka
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Commands/Inspect
+      TermType: 0
+      Description: 
+      Languages:
+      - Inspect
+      - Inspektuj
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Commands/Use
+      TermType: 0
+      Description: 
+      Languages:
+      - Use
+      - "U\u017Cyj"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Commands/Equip
+      TermType: 0
+      Description: 
+      Languages:
+      - Equip
+      - Wyekwipuj
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Photograph
+      TermType: 0
+      Description: 
+      Languages:
+      - Photograph
+      - "Zdj\u0119cie"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
@@ -51,7 +91,7 @@ MonoBehaviour:
     - Name: Polish
       Code: pl
       Flags: 0
-    IgnoreDeviceLanguage: 0
+    IgnoreDeviceLanguage: 1
     _AllowUnloadingLanguages: 0
     Google_WebServiceURL: 
     Google_SpreadsheetKey: 

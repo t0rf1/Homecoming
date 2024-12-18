@@ -5,13 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController characterController;
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private InputManager inputManager;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
+    //Dialogues
     private DialogueTrigger dialogueTrigger;
     [SerializeField] private DialogueManager dialogueManager;
-    
+
+    //Inventory
+    private Item itemToPickup;
+
     ////Animations
     //public Animator animator;
     //private float animationDampTime = 0.1f;
@@ -21,7 +25,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
 
-        gameInput.OnInteractAction += GameInput_OnInteractAction;
+        inputManager.OnInteractAction += GameInput_OnInteractAction;
 
         ////Animations
         //animator = GetComponent<Animator>();
@@ -67,20 +71,21 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         //Getting movement input
-        Vector2 movementVector = gameInput.GetMovementVectorNormalized();
+        Vector2 movementVector = inputManager.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
         //Getting rotation input
-        Vector2 rotateVector = gameInput.GetRotationVector();
+        Vector2 rotateVector = inputManager.GetRotationVector();
 
         //Transform player
-        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
         moveDirection = transform.TransformDirection(moveDirection);
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        transform.Rotate(0, rotateVector.x * rotateSpeed * Time.deltaTime, 0);
     }
 
     private void HandleInteractions()
     {
+        //Dialogues
         if(dialogueManager.inDialogue)
         {
             dialogueManager.DisplayNextMessage();
@@ -90,6 +95,9 @@ public class Player : MonoBehaviour
             dialogueTrigger?.TriggerDialogue();
         }
 
+        //Item pickup
+        itemToPickup = itemToPickup?.PickupItem();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,6 +106,11 @@ public class Player : MonoBehaviour
         {
             dialogueTrigger = other.GetComponent<DialogueTrigger>();
         }
+
+        if (other.GetComponent<Item>() != null)
+        {
+            itemToPickup = other.GetComponent<Item>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -105,6 +118,11 @@ public class Player : MonoBehaviour
         if (other.GetComponent<DialogueTrigger>() != null)
         {
             dialogueTrigger = null;
+        }
+
+        if (other.GetComponent<Item>() != null)
+        {
+            itemToPickup = null;
         }
     }
 }
