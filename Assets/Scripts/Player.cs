@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     //Inventory
     private Item itemToPickup;
 
+    //Doors
+    private DoorsTrigger doorToUse;
+
     ////Animations
     //public Animator animator;
     //private float animationDampTime = 0.1f;
@@ -86,7 +89,7 @@ public class Player : MonoBehaviour
     private void HandleInteractions()
     {
         //Dialogues
-        if(dialogueManager.inDialogue)
+        if (dialogueManager.inDialogue)
         {
             dialogueManager.DisplayNextMessage();
         }
@@ -98,18 +101,25 @@ public class Player : MonoBehaviour
         //Item pickup
         itemToPickup = itemToPickup?.PickupItem();
 
+        //Door usage
+        doorToUse?.UseDoor();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<DialogueTrigger>() != null)
+        if (other.GetComponent<DialogueTrigger>() != null)
         {
             dialogueTrigger = other.GetComponent<DialogueTrigger>();
         }
 
-        if (other.GetComponent<Item>() != null)
+        else if (other.GetComponent<Item>() != null)
         {
             itemToPickup = other.GetComponent<Item>();
+        }
+
+        else if (other.GetComponent<DoorsTrigger>() != null)
+        {
+            doorToUse = other.GetComponent<DoorsTrigger>();
         }
     }
 
@@ -123,6 +133,11 @@ public class Player : MonoBehaviour
         if (other.GetComponent<Item>() != null)
         {
             itemToPickup = null;
+        }
+
+        if (other.GetComponent<DoorsTrigger>() != null)
+        {
+            doorToUse = null;
         }
     }
 }
