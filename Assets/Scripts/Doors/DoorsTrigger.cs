@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DoorsTrigger : MonoBehaviour
 {
-    [SerializeField] private Doors.AnimationSide animationSide;
-
     Doors doors;
 
     private void Start()
@@ -15,6 +13,6 @@ public class DoorsTrigger : MonoBehaviour
 
     public void UseDoor()
     {
-        doors.UseDoor(animationSide);
+        doors.UseDoor();
     }
 }
