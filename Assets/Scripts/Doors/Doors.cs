@@ -34,7 +34,7 @@ public class Doors : MonoBehaviour
                 openState = OpenState.Opened;
                 break;
 
-            case OpenState.Opened: 
+            case OpenState.Opened:
                 animationState = AnimationState.Closing;
                 canStop_animation = false;
                 animator.SetFloat("OpenOrClose", ((float)animationState));
@@ -45,12 +45,9 @@ public class Doors : MonoBehaviour
 
     public void StopAnimation()
     {
-        if(canStop_animation)
-        {
-            animationState = AnimationState.Stop;
-            animator.SetFloat("OpenOrClose", ((float)animationState));
-            Debug.Log("Stopped");
-        }
+        animationState = AnimationState.Stop;
+        animator.SetFloat("OpenOrClose", ((float)animationState));
+        Debug.Log("Stopped");
     }
 
     private enum AnimationState
