@@ -13,7 +13,6 @@ public class DoorsTrigger : MonoBehaviour
 
     public void UseDoor()
     {
-        Debug.Log(doors.canStop_animation);
         doors.UseDoor();
     }
 }

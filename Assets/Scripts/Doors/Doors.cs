@@ -8,7 +8,10 @@ public class Doors : MonoBehaviour
     Animator animator;
     OpenState openState;
     AnimationState animationState;
+    AnimationState previousAnimationState;
     public bool canStop_animation;
+
+    DoorsTriggerStop doorsTriggerStop;
 
     private void Start()
     {
@@ -16,6 +19,8 @@ public class Doors : MonoBehaviour
         openState = OpenState.Closed;
         animationState = AnimationState.Stop;
         canStop_animation = false;
+
+        doorsTriggerStop = GetComponentInChildren<DoorsTriggerStop>();
     }
 
     public void UseDoor()
@@ -45,9 +50,15 @@ public class Doors : MonoBehaviour
 
     public void StopAnimation()
     {
+        previousAnimationState = animationState;
         animationState = AnimationState.Stop;
         animator.SetFloat("OpenOrClose", ((float)animationState));
-        Debug.Log("Stopped");
+    }
+
+    public void ResumeAnimation()
+    {
+        //animationState = previousAnimationState;
+        animator.SetFloat("OpenOrClose", ((float)animationState));
     }
 
     private enum AnimationState
