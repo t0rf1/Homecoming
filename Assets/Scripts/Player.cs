@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
 
+        Debug.Log(dialogueTrigger);
         ////Animations
         //if (movementVector.magnitude != 0f)
         //{
@@ -89,20 +91,33 @@ public class Player : MonoBehaviour
     private void HandleInteractions()
     {
         //Dialogues
-        if (dialogueManager.inDialogue)
+        if (dialogueTrigger != null)
         {
-            dialogueManager.DisplayNextMessage();
-        }
-        else
-        {
-            dialogueTrigger?.TriggerDialogue();
+            if (dialogueManager.inDialogue)
+            {
+                dialogueManager.DisplayNextMessage();
+            }
+            else
+            {
+                dialogueTrigger?.TriggerDialogue();
+            }
+            return;
         }
 
         //Item pickup
-        itemToPickup = itemToPickup?.PickupItem();
+        if (itemToPickup != null)
+        {
+            itemToPickup = itemToPickup?.PickupItem();
+            return;
+        }
 
         //Door usage
-        doorToUse?.UseDoor();
+        if (doorToUse != null)
+        {
+            doorToUse?.UseDoor();
+            doorToUse = null;
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

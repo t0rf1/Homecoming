@@ -6,28 +6,18 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     Animator animator;
-    OpenState openState;
-    AnimationState animationState;
-    AnimationState previousAnimationState;
-    public bool canStop_animation;
+    DoorsTrigger doorsTrigger;
 
 
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        openState = OpenState.Closed;
-        animationState = AnimationState.Stop;
-        canStop_animation = false;
-
+        doorsTrigger = GetComponentInChildren<DoorsTrigger>();
     }
 
-    public void UseDoor()
+    public void OpenDoor()
     {
+        animator.SetTrigger("Open");
+        doorsTrigger.gameObject.SetActive(false);
     }
-
-    public enum OpenState
-    {
-        Opened,
-        Closed
-    };
 }
