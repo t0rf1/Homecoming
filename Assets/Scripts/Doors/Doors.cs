@@ -20,4 +20,14 @@ public class Doors : MonoBehaviour
         animator.SetTrigger("Open");
         doorsTrigger.gameObject.SetActive(false);
     }
+
+    public void StopAnimation()
+    {
+        animator.SetFloat("Speed", 0f);
+    }
+
+    public void ResumeAnimation()
+    {
+        animator.SetFloat("Speed", 1f);
+    }
 }
