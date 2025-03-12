@@ -13,6 +13,14 @@ public class DoorsTrigger : MonoBehaviour
 
     public void UseDoor()
     {
-        doors.OpenDoor();
+        if (!doors.locked)
+        {
+            doors.OpenDoor();
+            Destroy(gameObject);
+        }
+        else
+        {
+            doors.dialogueTriggers[0].Interact();
+        }
     }
 }

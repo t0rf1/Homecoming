@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
+
     #region Data
     [SerializeField] private InputManager inputManager;
 
@@ -22,6 +24,11 @@ public class InventoryManager : MonoBehaviour
 
     public ItemSlot selectedItemSlot;
     #endregion
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -37,21 +44,31 @@ public class InventoryManager : MonoBehaviour
         ActivateMenu();
     }
 
-    public void ActivateMenu()
+    private void ActivateMenu()
     {
-        if (menuActivated)
+        if (!menuActivated)
         {
-            Time.timeScale = 1f;
-            InventoryMenu.SetActive(false);
-            menuActivated = false;
+            TurnOnInventory();
         }
-        else if (!menuActivated)
+        else if (menuActivated)
         {
-            Time.timeScale = 0f;
-            InventoryMenu.SetActive(true);
-            menuActivated = true;
-            ResetSelectedItemSlot();
+            TurnOffInventory();
         }
+    }
+
+    public void TurnOffInventory()
+    {
+        Time.timeScale = 1f;
+        InventoryMenu.SetActive(false);
+        menuActivated = false;
+    }
+
+    public void TurnOnInventory()
+    {
+        Time.timeScale = 0f;
+        InventoryMenu.SetActive(true);
+        menuActivated = true;
+        ResetSelectedItemSlot();
     }
 
     public void UseItem()

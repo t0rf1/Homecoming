@@ -6,19 +6,21 @@ using UnityEngine;
 public class Doors : MonoBehaviour
 {
     Animator animator;
-    DoorsTrigger doorsTrigger;
+    public List<DialogueTrigger> dialogueTriggers = new List<DialogueTrigger>();
+    public DoorsSO doorsSO;
+
+    public bool locked = false;
 
 
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        doorsTrigger = GetComponentInChildren<DoorsTrigger>();
+        dialogueTriggers.AddRange(GetComponents<DialogueTrigger>());
     }
 
     public void OpenDoor()
     {
         animator.SetTrigger("Open");
-        doorsTrigger.gameObject.SetActive(false);
     }
 
     public void StopAnimation()
@@ -29,5 +31,11 @@ public class Doors : MonoBehaviour
     public void ResumeAnimation()
     {
         animator.SetFloat("Speed", 1f);
+    }
+
+    public void UnlockDoors()
+    {
+        locked = false;
+        dialogueTriggers[1].Interact();
     }
 }

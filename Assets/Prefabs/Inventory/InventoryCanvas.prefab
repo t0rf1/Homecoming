@@ -2342,6 +2342,7 @@ MonoBehaviour:
   itemSOs:
   - {fileID: 11400000, guid: f6174ebec62150e4da0b953211bc3f5b, type: 2}
   - {fileID: 11400000, guid: f75ebf8d2d04e2e4fb37a710e4c196f6, type: 2}
+  - {fileID: 11400000, guid: c0251c27da8cb344bb654b97ca010c6a, type: 2}
   inspectPanel: {fileID: 7265464223977368008}
   selectedItemSlot: {fileID: 0}
 --- !u!1001 &1976649342665948615

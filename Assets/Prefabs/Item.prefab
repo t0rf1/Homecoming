@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 1372305940314446139}
   - component: {fileID: 965896526397778139}
   - component: {fileID: 4160704450047806634}
+  - component: {fileID: 5017410040744503903}
+  - component: {fileID: 2108342917705403202}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -152,3 +154,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   itemQuantity: 1
+--- !u!114 &5017410040744503903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7941961048386909860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6b23a3171d9d148a6b2db45ecc24c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invokeMethod:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4160704450047806634}
+        m_TargetAssemblyTypeName: Item, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+--- !u!114 &2108342917705403202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7941961048386909860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5678723f1fe1ab34893a293315609079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    nameLocalized:
+      mTerm: 
+      mRTL_IgnoreArabicFix: 0
+      mRTL_MaxLineLength: 0
+      mRTL_ConvertNumbers: 0
+      m_DontLocalizeParameters: 0
+    messagesLocalized:
+    - mTerm: Items/PickedUpItem
+      mRTL_IgnoreArabicFix: 0
+      mRTL_MaxLineLength: 0
+      mRTL_ConvertNumbers: 0
+      m_DontLocalizeParameters: 0
+  messagesString: []

@@ -81,6 +81,46 @@ MonoBehaviour:
       - "Zdj\u0119cie"
       Flags: 0000
       Languages_Touch: []
+    - Term: Doors/DoorUnlocked
+      TermType: 0
+      Description: 
+      Languages:
+      - I unlocked the door
+      - "Odblokowa\u0142em drzwi"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Keys/Key
+      TermType: 0
+      Description: 
+      Languages:
+      - Key
+      - Klucz
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Keys/KeyDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - Door key
+      - Klucz do drzwi
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Doors/DoorLocked
+      TermType: 0
+      Description: 
+      Languages:
+      - These doors seems to be locked
+      - "Te drzwi s\u0105 zamkni\u0119te na klucz"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/PickedUpItem
+      TermType: 0
+      Description: 
+      Languages:
+      - 'I picked up '
+      - "Podnios\u0142em: "
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

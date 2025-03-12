@@ -10,15 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
-    //Dialogues
-    private DialogueTrigger dialogueTrigger;
-    [SerializeField] private DialogueManager dialogueManager;
-
-    //Inventory
-    private Item itemToPickup;
-
-    //Doors
-    private DoorsTrigger doorToUse;
+    //Interactions
+    private Interactable objectToInteract;
 
     ////Animations
     //public Animator animator;
@@ -45,7 +38,6 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
 
-        Debug.Log(dialogueTrigger);
         ////Animations
         //if (movementVector.magnitude != 0f)
         //{
@@ -90,69 +82,25 @@ public class Player : MonoBehaviour
 
     private void HandleInteractions()
     {
-        //Dialogues
-        if (dialogueTrigger != null)
-        {
-            if (dialogueManager.inDialogue)
-            {
-                dialogueManager.DisplayNextMessage();
-            }
-            else
-            {
-                dialogueTrigger?.TriggerDialogue();
-            }
-            return;
-        }
-
-        //Item pickup
-        if (itemToPickup != null)
-        {
-            itemToPickup = itemToPickup?.PickupItem();
-            return;
-        }
-
-        //Door usage
-        if (doorToUse != null)
-        {
-            doorToUse?.UseDoor();
-            doorToUse = null;
-            return;
-        }
+        objectToInteract?.Interact();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<DialogueTrigger>() != null)
+        if (other.GetComponent<Interactable>() != null)
         {
-            dialogueTrigger = other.GetComponent<DialogueTrigger>();
-        }
-
-        else if (other.GetComponent<Item>() != null)
-        {
-            itemToPickup = other.GetComponent<Item>();
-        }
-
-        else if (other.GetComponent<DoorsTrigger>() != null)
-        {
-            doorToUse = other.GetComponent<DoorsTrigger>();
+            objectToInteract = other.GetComponent<Interactable>();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<DialogueTrigger>() != null)
+        if (objectToInteract != null)
         {
-            dialogueTrigger = null;
-        }
-
-        if (other.GetComponent<Item>() != null)
-        {
-            itemToPickup = null;
-        }
-
-        if (other.GetComponent<DoorsTrigger>() != null)
-        {
-            doorToUse = null;
+            if (GameObject.ReferenceEquals(other?.gameObject, objectToInteract?.gameObject))
+            {
+                objectToInteract = null;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -15,6 +16,7 @@ public class ItemSO : ScriptableObject
 
     [Header("Item Attributes")]
     public int healthPoints;
+    public ScriptableObject doorToOpen;
 
     public bool UseItem()
     {
@@ -27,6 +29,11 @@ public class ItemSO : ScriptableObject
 
             case ItemType.putSomewhere:
                 Debug.Log("Putting...");
+                return true;
+
+            case ItemType.key:
+                Debug.Log("Opening the door: " + doorToOpen);
+                InventoryManager.Instance.TurnOffInventory();
                 return true;
         }
         return false;
