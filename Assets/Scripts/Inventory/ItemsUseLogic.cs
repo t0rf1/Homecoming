@@ -1,11 +1,11 @@
 using UnityEngine;
 using static ItemSO;
+using static UnityEditor.Progress;
 
 public class ItemsUseLogic : MonoBehaviour
 {
     Player player;
     public GameObject objectToInteract;
-    public Doors doorsToInteract;
 
     private void Start()
     {
@@ -14,8 +14,6 @@ public class ItemsUseLogic : MonoBehaviour
 
     private void Update()
     {
-        objectToInteract = player.objectToInteractGameObject;
-        Debug.Log(objectToInteract.name);
     }
 
     public void UseItem(ItemSO itemSO)
@@ -33,23 +31,26 @@ public class ItemsUseLogic : MonoBehaviour
                 break;
 
             case ItemType.key:
-                Debug.Log("dupa");
-
-                if (doorsToInteract != null)
-                {
-                    Debug.Log("dupa2");
-                    if (itemSO.doorsToUnlockIndex == doorsToInteract.doorsIndex)
-                    {
-                        Debug.Log("dupa3");
-                        InventoryManager.Instance.TurnOffInventory();
-
-                        doorsToInteract.UnlockDoors();
-
-                    }
-                }
-
+                KeyLogic(itemSO);
                 break;
 
+        }
+    }
+
+    void KeyLogic(ItemSO itemSO)
+    {
+        objectToInteract = player.objectToInteractGameObject;
+        Doors doorsToInteract = objectToInteract?.GetComponentInParent<Doors>();
+
+        if (doorsToInteract != null)
+        {
+            Debug.Log(doorsToInteract);
+            if (itemSO.doorsToUnlockIndex == doorsToInteract.doorsIndex)
+            {
+                InventoryManager.Instance.TurnOffInventory();
+
+                doorsToInteract.UnlockDoors();
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotateSpeed = .5f;
 
     //Interactions
-    private Interactable objectToInteract;
+    private Interactable objectToInteract = null;
     public GameObject objectToInteractGameObject;
 
     ////Animations
