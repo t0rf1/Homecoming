@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     //Interactions
     private Interactable objectToInteract;
+    public GameObject objectToInteractGameObject;
 
     ////Animations
     //public Animator animator;
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour
         if (other.GetComponent<Interactable>() != null)
         {
             objectToInteract = other.GetComponent<Interactable>();
+            objectToInteractGameObject = objectToInteract.gameObject;
         }
     }
 
@@ -100,6 +102,7 @@ public class Player : MonoBehaviour
             if (GameObject.ReferenceEquals(other?.gameObject, objectToInteract?.gameObject))
             {
                 objectToInteract = null;
+                objectToInteractGameObject = null;
             }
         }
     }

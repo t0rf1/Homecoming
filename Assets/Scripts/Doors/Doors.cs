@@ -7,9 +7,10 @@ public class Doors : MonoBehaviour
 {
     Animator animator;
     public List<DialogueTrigger> dialogueTriggers = new List<DialogueTrigger>();
-    public DoorsSO doorsSO;
 
     public bool locked = false;
+
+    public int doorsIndex;
 
 
     private void Start()

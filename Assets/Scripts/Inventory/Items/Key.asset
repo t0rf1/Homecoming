@@ -29,16 +29,4 @@ MonoBehaviour:
   usable: 1
   equipable: 0
   healthPoints: 0
-  doorToOpen: {fileID: 11400000, guid: a5147cbd1dfa08940b4e779fb77473f9, type: 2}
-  pickupMessage:
-    mTerm: 
-    mRTL_IgnoreArabicFix: 0
-    mRTL_MaxLineLength: 0
-    mRTL_ConvertNumbers: 0
-    m_DontLocalizeParameters: 0
-  useMessage:
-    mTerm: Items/Keys/DoorUnlocked
-    mRTL_IgnoreArabicFix: 0
-    mRTL_MaxLineLength: 0
-    mRTL_ConvertNumbers: 0
-    m_DontLocalizeParameters: 0
+  doorsToUnlockIndex: 1

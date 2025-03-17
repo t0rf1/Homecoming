@@ -1,10 +1,7 @@
-using I2.Loc;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
@@ -23,6 +20,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject inspectPanel;
 
     public ItemSlot selectedItemSlot;
+
+    ItemsUseLogic itemUseLogic;
     #endregion
 
     private void Awake()
@@ -37,6 +36,8 @@ public class InventoryManager : MonoBehaviour
 
         InventoryMenu.SetActive(false);
         inputManager.OnInventoryAction += InputManager_OnInventoryAction;
+
+        itemUseLogic = GetComponent<ItemsUseLogic>();
     }
 
     private void InputManager_OnInventoryAction(object sender, System.EventArgs e)
@@ -48,7 +49,10 @@ public class InventoryManager : MonoBehaviour
     {
         if (!menuActivated)
         {
-            TurnOnInventory();
+            if (Time.timeScale > 0)
+            {
+                TurnOnInventory();
+            }
         }
         else if (menuActivated)
         {
@@ -77,8 +81,10 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.itemType == selectedItemSlot?.item.itemType)
             {
-                item.UseItem();
+
                 selectedItemSlot.UseItem();
+                itemUseLogic.UseItem(item);
+
                 selectedItemSlot = null;
             }
         }
@@ -116,7 +122,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ResetSelectedItemSlot()
     {
-        foreach(var slot in itemSlots)
+        foreach (var slot in itemSlots)
         {
             if (slot.gameObject.GetComponent<Button>().enabled)
             {
