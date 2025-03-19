@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour,IDamagable
 {
+    public float maxhp, hp; 
+
+
     public NavMeshAgent agent;
 
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    RaycastHit hit;
     //patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -24,6 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Awake()
     {
+        hp = maxhp;
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -33,20 +38,23 @@ public class NewBehaviourScript : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        
         if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if(playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
     void Patroling()
     {
-        if(walkPointSet)
+
+        if(!walkPointSet)
         {
             SearchWalkPoint();
         }
 
         if(walkPointSet)
         {
+            Debug.Log("Walking");
             agent.SetDestination(walkPoint);
         }
 
@@ -55,7 +63,7 @@ public class NewBehaviourScript : MonoBehaviour
         //Walkpoint reached
         if(distanceToWalkPoint.magnitude <1f)
         {
-
+            walkPointSet = false;
         }
 
     }
@@ -70,14 +78,60 @@ public class NewBehaviourScript : MonoBehaviour
         {
             walkPointSet = true;
         }
+
+        if(Physics.Raycast(transform.position, walkPoint, out hit))
+        {
+            if(hit.collider != null)
+            {
+                Debug.Log("Terrain");
+            }
+        }
     }
     void ChasePlayer()
     {
-
+        agent.SetDestination(player.position);
     }
 
     void AttackPlayer()
     {
+        agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+        if(!alreadyAttacked)
+        {
+            ///Attack code here
+
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAtacks);
+        }
 
     }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+
+        if (hp <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+    }
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, player.position );    
+    }
+
 }
