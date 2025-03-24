@@ -16,7 +16,7 @@ public class ItemsUseLogic : MonoBehaviour
     {
     }
 
-    public void UseItem(ItemSO itemSO)
+    public bool UseItem(ItemSO itemSO)
     {
 
         switch (itemSO.itemType)
@@ -31,16 +31,21 @@ public class ItemsUseLogic : MonoBehaviour
                 break;
 
             case ItemType.key:
-                KeyLogic(itemSO);
-                break;
+                return KeyLogic(itemSO);
 
         }
+        return false;
     }
 
-    void KeyLogic(ItemSO itemSO)
+    bool KeyLogic(ItemSO itemSO)
     {
-        objectToInteract = player.objectToInteractGameObject;
-        Doors doorsToInteract = objectToInteract?.GetComponentInParent<Doors>();
+        Doors doorsToInteract = null;
+
+        objectToInteract = player?.objectToInteractGameObject;
+        if (objectToInteract != null)
+        {
+            doorsToInteract = objectToInteract.GetComponentInParent<Doors>();
+        }
 
         if (doorsToInteract != null)
         {
@@ -50,7 +55,10 @@ public class ItemsUseLogic : MonoBehaviour
                 InventoryManager.Instance.TurnOffInventory();
 
                 doorsToInteract.UnlockDoors();
+                return true;
             }
+            else return false;
         }
+        else return false;
     }
 }

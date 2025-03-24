@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     #region Data
     [SerializeField] private InputManager inputManager;
+    private DialogueTrigger dialogueTrigger;
 
     public GameObject InventoryMenu;
     private bool menuActivated;
@@ -22,6 +23,8 @@ public class InventoryManager : MonoBehaviour
     public ItemSlot selectedItemSlot;
 
     ItemsUseLogic itemUseLogic;
+
+    bool shouldEndDialogue = false;
     #endregion
 
     private void Awake()
@@ -34,10 +37,22 @@ public class InventoryManager : MonoBehaviour
         //Get a list of all ITEM SLOTS
         itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
 
+        dialogueTrigger = GetComponent<DialogueTrigger>();
         InventoryMenu.SetActive(false);
         inputManager.OnInventoryAction += InputManager_OnInventoryAction;
 
+        inputManager.OnInteractAction += InputManager_OnInteractAction;
+
         itemUseLogic = GetComponent<ItemsUseLogic>();
+    }
+
+    private void InputManager_OnInteractAction(object sender, System.EventArgs e)
+    {
+        if (shouldEndDialogue)
+        {
+            dialogueTrigger.Interact();
+            shouldEndDialogue = false;
+        }
     }
 
     private void InputManager_OnInventoryAction(object sender, System.EventArgs e)
@@ -81,11 +96,17 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.itemType == selectedItemSlot?.item.itemType)
             {
-
-                selectedItemSlot.UseItem();
-                itemUseLogic.UseItem(item);
-
-                selectedItemSlot = null;
+                if (itemUseLogic.UseItem(item))
+                {
+                    selectedItemSlot.UseItem();
+                    selectedItemSlot = null;
+                }
+                else
+                {
+                    TurnOffInventory();
+                    dialogueTrigger.Interact();
+                    shouldEndDialogue = true;
+                }
             }
         }
     }
