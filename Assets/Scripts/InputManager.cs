@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     public event EventHandler OnInteractAction;
     public event EventHandler OnInventoryAction;
+    public event EventHandler OnAttackAction;
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -16,6 +17,15 @@ public class InputManager : MonoBehaviour
 
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.Inventory.performed += Inventory_performed;
+        playerInputActions.Player.Attack.performed += Attack_performed;
+    }
+
+
+
+    //---------------ATTACK---------------
+    private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnAttackAction?.Invoke(this, EventArgs.Empty);
     }
 
     //---------------INVENTORY---------------

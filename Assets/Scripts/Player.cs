@@ -30,10 +30,16 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
+        inputManager.OnAttackAction += InputManager_OnAttackAction;
 
         ////Animations
         //animator = GetComponent<Animator>();
         //fixedYPosition = transform.position.y;
+    }
+
+    private void InputManager_OnAttackAction(object sender, System.EventArgs e)
+    {
+       
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -45,7 +51,6 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
 
-        Debug.Log(dialogueTrigger);
         ////Animations
         //if (movementVector.magnitude != 0f)
         //{
