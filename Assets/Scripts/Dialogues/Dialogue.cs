@@ -6,6 +6,6 @@ using I2.Loc;
 [System.Serializable]
 public class Dialogue
 {
-    public LocalizedString name;
-    public List<LocalizedString> messages;
+    public LocalizedString nameLocalized;
+    public List<LocalizedString> messagesLocalized;
 }

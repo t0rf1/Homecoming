@@ -1,6 +1,7 @@
 using I2.Loc;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -15,22 +16,7 @@ public class ItemSO : ScriptableObject
 
     [Header("Item Attributes")]
     public int healthPoints;
-
-    public bool UseItem()
-    {
-        switch (itemType)
-        {
-            case ItemType.health:
-                //Logic behind healing
-                Debug.Log("Healing: " + healthPoints);
-                return true;
-
-            case ItemType.putSomewhere:
-                Debug.Log("Putting...");
-                return true;
-        }
-        return false;
-    }
+    public int doorsToUnlockIndex;
 
     public enum ItemType
     {

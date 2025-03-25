@@ -13,6 +13,6 @@ public class DoorsTrigger : MonoBehaviour
 
     public void UseDoor()
     {
-        doors.OpenDoor();
+        doors.UseDoor();
     }
 }

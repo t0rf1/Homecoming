@@ -1,11 +1,13 @@
+using I2.Loc;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
-using I2.Loc;
+using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance;
+
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text messageText;
@@ -14,25 +16,29 @@ public class DialogueManager : MonoBehaviour
 
     [System.NonSerialized] public bool inDialogue;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         dialogueBox.SetActive(false);
         messages = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(LocalizedString nameLocalized, List<string> messagesString)
     {
         inDialogue = true;
         Time.timeScale = 0f;
 
         dialogueBox.SetActive(true);
 
-        Debug.Log(dialogue.name);
-        nameText.text = dialogue.name;
+        nameText.text = nameLocalized;
 
         messages.Clear();
 
-        foreach (string message in dialogue.messages)
+        foreach (string message in messagesString)
         {
             messages.Enqueue(message);
         }

@@ -1,16 +1,16 @@
-using I2.Loc;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance;
+
     #region Data
     [SerializeField] private InputManager inputManager;
+    private DialogueTrigger dialogueTrigger;
 
     public GameObject InventoryMenu;
     private bool menuActivated;
@@ -21,15 +21,38 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject inspectPanel;
 
     public ItemSlot selectedItemSlot;
+
+    ItemsUseLogic itemUseLogic;
+
+    bool shouldEndDialogue = false;
     #endregion
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         //Get a list of all ITEM SLOTS
         itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
 
+        dialogueTrigger = GetComponent<DialogueTrigger>();
         InventoryMenu.SetActive(false);
         inputManager.OnInventoryAction += InputManager_OnInventoryAction;
+
+        inputManager.OnInteractAction += InputManager_OnInteractAction;
+
+        itemUseLogic = GetComponent<ItemsUseLogic>();
+    }
+
+    private void InputManager_OnInteractAction(object sender, System.EventArgs e)
+    {
+        if (shouldEndDialogue)
+        {
+            dialogueTrigger.Interact();
+            shouldEndDialogue = false;
+        }
     }
 
     private void InputManager_OnInventoryAction(object sender, System.EventArgs e)
@@ -37,21 +60,34 @@ public class InventoryManager : MonoBehaviour
         ActivateMenu();
     }
 
-    public void ActivateMenu()
+    private void ActivateMenu()
     {
-        if (menuActivated)
+        if (!menuActivated)
         {
-            Time.timeScale = 1f;
-            InventoryMenu.SetActive(false);
-            menuActivated = false;
+            if (Time.timeScale > 0)
+            {
+                TurnOnInventory();
+            }
         }
-        else if (!menuActivated)
+        else if (menuActivated)
         {
-            Time.timeScale = 0f;
-            InventoryMenu.SetActive(true);
-            menuActivated = true;
-            ResetSelectedItemSlot();
+            TurnOffInventory();
         }
+    }
+
+    public void TurnOffInventory()
+    {
+        Time.timeScale = 1f;
+        InventoryMenu.SetActive(false);
+        menuActivated = false;
+    }
+
+    public void TurnOnInventory()
+    {
+        Time.timeScale = 0f;
+        InventoryMenu.SetActive(true);
+        menuActivated = true;
+        ResetSelectedItemSlot();
     }
 
     public void UseItem()
@@ -60,9 +96,17 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.itemType == selectedItemSlot?.item.itemType)
             {
-                item.UseItem();
-                selectedItemSlot.UseItem();
-                selectedItemSlot = null;
+                if (itemUseLogic.UseItem(item))
+                {
+                    selectedItemSlot.UseItem();
+                    selectedItemSlot = null;
+                }
+                else
+                {
+                    TurnOffInventory();
+                    dialogueTrigger.Interact();
+                    shouldEndDialogue = true;
+                }
             }
         }
     }
@@ -99,7 +143,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ResetSelectedItemSlot()
     {
-        foreach(var slot in itemSlots)
+        foreach (var slot in itemSlots)
         {
             if (slot.gameObject.GetComponent<Button>().enabled)
             {
