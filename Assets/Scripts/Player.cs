@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController characterController;
-    [SerializeField] private InputManager inputManager;
+    private InputManager inputManager;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
 
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
         characterController = GetComponent<CharacterController>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
