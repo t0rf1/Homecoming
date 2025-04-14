@@ -5,31 +5,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Walking
     private CharacterController characterController;
     private InputManager inputManager;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
+    Vector2 movementVector;
+    Vector2 rotateVector;
 
     //Interactions
     private Interactable objectToInteract = null;
     public GameObject objectToInteractGameObject;
 
-    ////Animations
-    //public Animator animator;
-    //private float animationDampTime = 0.1f;
-    //private float fixedYPosition;
+    //Animations
+    public Animator animator;
+    private float animationDampTime = 0.1f;
 
     private void Start()
     {
         inputManager = FindObjectOfType<InputManager>();
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
-
-        ////Animations
-        //animator = GetComponent<Animator>();
-        //fixedYPosition = transform.position.y;
     }
 
     private void InputManager_OnAttackAction(object sender, System.EventArgs e)
@@ -46,25 +45,10 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
 
-        ////Animations
-        //if (movementVector.magnitude != 0f)
-        //{
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else animator.SetBool("isWalking", false);
-
-        //animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
-        //animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
-
-        //if (rotateVector.x != 0f)
-        //{
-        //    animator.SetBool("isTurning", true);
-        //}
-        //else animator.SetBool("isTurning", false);
-
-        //animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
+        HandleAnimations();
     }
 
+    
     private void LateUpdate()
     {
         ////Animations; Lock Y position
@@ -73,14 +57,38 @@ public class Player : MonoBehaviour
         //transform.position = position;
     }
 
+    private void HandleAnimations()
+    {
+        ////Animations
+        //if (movementVector.magnitude != 0f)
+        //{
+        //    animator.SetBool("isWalking", true);
+        //}
+        //else animator.SetBool("isWalking", false);
+
+        Debug.Log("x: " + movementVector.x);
+        Debug.Log("y: " + movementVector.y);
+
+        animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
+        animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
+
+        if (rotateVector.x != 0f)
+        {
+            animator.SetBool("isTurning", true);
+        }
+        else animator.SetBool("isTurning", false);
+
+        animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
+    }
+
     private void HandleMovement()
     {
         //Getting movement input
-        Vector2 movementVector = inputManager.GetMovementVectorNormalized();
+        movementVector = inputManager.GetMovementVectorNormalized();
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
         //Getting rotation input
-        Vector2 rotateVector = inputManager.GetRotationVector();
+        rotateVector = inputManager.GetRotationVector();
 
         //Transform player
         moveDirection = transform.TransformDirection(moveDirection);

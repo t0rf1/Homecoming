@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4460c5a100581304dbe1428b196479ea
+guid: 6ec03688143441e41a4c02b421c9f5a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,7 +19,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'root|MixamoWalk_remap' has import animation
+    animationImportWarnings: "\nClip 'root|MixamoIdle_remap' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
       humanoid transforms and has rotation animation that will be discarded.\n"
@@ -27,7 +27,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: root|MixamoWalk_remap
-      takeName: root|MixamoWalk_remap
-      internalID: 4490678544745848426
+      name: root|MixamoIdle_remap
+      takeName: root|MixamoIdle_remap
+      internalID: 7139117463924665055
       firstFrame: 0
-      lastFrame: 61
+      lastFrame: 1036
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
