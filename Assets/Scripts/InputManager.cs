@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnInventoryAction;
     public event EventHandler OnAttackAction;
+    public event EventHandler OnSprintAction;
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -49,6 +50,8 @@ public class InputManager : MonoBehaviour
 
         return inputVector;
     }
+    //----Sprint----
+    
 
     //---------------ROTATION---------------
     public Vector2 GetRotationVector()

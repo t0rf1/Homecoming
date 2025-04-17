@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.75
-  rotateSpeed: 200
+  rotateSpeed: 150
   objectToInteractGameObject: {fileID: 0}
   animator: {fileID: 0}
 --- !u!143 &2997162263138499597

@@ -59,25 +59,23 @@ public class Player : MonoBehaviour
 
     private void HandleAnimations()
     {
-        ////Animations
-        //if (movementVector.magnitude != 0f)
-        //{
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else animator.SetBool("isWalking", false);
+        bool isWalking = false;
 
-        Debug.Log("x: " + movementVector.x);
-        Debug.Log("y: " + movementVector.y);
+        if (movementVector.magnitude != 0f)
+        {
+            isWalking = true;
+        }
+        else isWalking = false;
 
         animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
         animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
 
-        if (rotateVector.x != 0f)
+        //Turning
+        if (rotateVector.x != 0f && !isWalking)
         {
             animator.SetBool("isTurning", true);
         }
         else animator.SetBool("isTurning", false);
-
         animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
     }
 
