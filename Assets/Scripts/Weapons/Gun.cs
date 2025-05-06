@@ -1,111 +1,64 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    GameObject currentTarget;
-    public List<GameObject> targets;
-    RaycastHit hitBox, hitRay;
+
+    TargetManager targetManager;
+    RaycastHit hit;
+    [SerializeField] LayerMask ground;
 
     bool canShoot = true;
     bool shootDelay = true;
-    public float damage, timeBetweenShots;
+    public float stunnDuration, timeBetweenShots;
+    public int damage;
 
+    private void Start()
+    {
+        targetManager = GameObject.Find("TargetManager").GetComponent<TargetManager>();
+    }
     private void Update()
     {
-        SearchForTarget();
-        if (targets.Count > 0)
+        if (targetManager.currentTarget != null)
         {
-            SortTargets();
-        }
-        else
-        {
-            currentTarget = null;
-        }
-
-        if (currentTarget != null)
-        {
-            if (Physics.Raycast(transform.position, currentTarget.transform.position, out hitRay))
+            if (Input.GetKey(KeyCode.Mouse1))
             {
-                
-                if (hitRay.collider != null)
-                {
-
-                    
-                    
-                }
-                else
-                {
-                    //canShoot = true;
-                   // Debug.Log("hit" + hitRay.collider.name);
-                    
-                }
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.P) && shootDelay)
+                //Debug.Log("Gun Ready");
+                if (Input.GetKeyDown(KeyCode.Mouse0) && shootDelay)
                 {
                     shootDelay = false;
-                    Debug.Log("Shooted and dealt");
+                    //Debug.Log("Shoot");
+
+                    if(!Physics.Raycast(transform.position, targetManager.currentTarget.transform.position, out hit, ground))
+                    {
+                        Debug.Log("Shooted and dealt " + damage + " damage to obj: " + targetManager.currentTarget.name);
+                        targetManager.currentTarget.GetComponent<IDamagable>().TakeDamage(damage, stunnDuration);
+                    }
+                    else
+                    {
+                        Debug.Log("CosPrzeszkadza :" + hit.collider.name);
+                    }
+
+
                     Invoke(nameof(ShootReset), timeBetweenShots);
                 }
             }
-            
         }
-        
-    }
-    void SearchForTarget()
-    {
-        Physics.BoxCast(transform.position, new Vector3(1, 3, 1), transform.forward, out hitBox);
-        if (hitBox.collider != null)
-        {
-            if (hitBox.collider.CompareTag("Enemy"))
-            {
-                if (targets.Contains(hitBox.collider.gameObject) == false)
-                {
-                    targets.Add(hitBox.collider.gameObject);
-                    //Debug.Log(hitBox.collider.name);
-                }
-            }
-            else
-            {
-                targets.Clear();
-            }
 
-        }
-        else
-        {
-            targets.Clear();
-        }
-    }
 
-    void SortTargets()
-    {
-        float closestDistance = 100;
-        foreach (GameObject target in targets)
-        {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                currentTarget = target;
-            }
-        }
-    }
 
+    }
     void ShootReset()
     {
         shootDelay = true;
     }
     private void OnDrawGizmos()
     {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawCube(transform.position, new Vector3(1, 3, 1));
-        if(currentTarget != null)
+        if(targetManager.currentTarget != null)
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, currentTarget.transform.position);
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, targetManager.currentTarget.transform.position);
         }
         
+
     }
 }
