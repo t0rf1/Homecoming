@@ -155,7 +155,7 @@ public class NewBehaviourScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
         Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, player.position);
+        Gizmos.DrawRay(transform.position, player.position - transform.position );
 
     }
 
@@ -171,7 +171,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
-            if(Vector3.Distance(transform.position, player.position) <= gunSightDistance)
+            if(Vector3.Distance(transform.position,  player.position) <= gunSightDistance)
             {
                 //Check rotation
             }

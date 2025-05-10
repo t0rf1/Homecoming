@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
 
     bool canShoot = true;
     bool shootDelay = true;
+
+    public float fieldOfView;
     public float stunnDuration, timeBetweenShots;
     public int damage;
 
@@ -20,32 +22,40 @@ public class Gun : MonoBehaviour
     {
         if (targetManager.currentTarget != null)
         {
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (targetManager.currentTarget != null)
             {
-                //Debug.Log("Gun Ready");
-                if (Input.GetKeyDown(KeyCode.Mouse0) && shootDelay)
+                if (Input.GetKey(KeyCode.Mouse1))
                 {
-                    shootDelay = false;
-                    //Debug.Log("Shoot");
-
-                    if(!Physics.Raycast(transform.position, targetManager.currentTarget.transform.position, out hit, ground))
+                    //Debug.Log("Gun Ready");
+                    if (Input.GetKeyDown(KeyCode.Mouse0) && shootDelay)
                     {
-                        Debug.Log("Shooted and dealt " + damage + " damage to obj: " + targetManager.currentTarget.name);
-                        targetManager.currentTarget.GetComponent<IDamagable>().TakeDamage(damage, stunnDuration);
-                    }
-                    else
-                    {
-                        Debug.Log("CosPrzeszkadza :" + hit.collider.name);
-                    }
+                        shootDelay = false;
 
+                        //Debug.Log("Shoot");
 
-                    Invoke(nameof(ShootReset), timeBetweenShots);
+                        //Check angle
+                        Vector3 projectedVector = Vector3.ProjectOnPlane(targetManager.currentTarget.transform.position - transform.position, transform.up);
+                        if (Vector3.SignedAngle(projectedVector, transform.forward, transform.forward) <= fieldOfView)
+                        {
+                            if (!Physics.Raycast(transform.position, targetManager.currentTarget.transform.position - transform.position, out hit, Vector3.Distance(transform.position, targetManager.currentTarget.transform.position), ground))
+                            {
+                                Debug.Log("Shooted and dealt " + damage + " damage to obj: " + targetManager.currentTarget.name);
+                                targetManager.currentTarget.GetComponent<IDamagable>().TakeDamage(damage, stunnDuration);
+                            }
+                            else
+                            {
+                                Debug.Log("CosPrzeszkadza :" + hit.collider.name);
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("Poza zasiêgiem widzenia");
+                        }
+                        Invoke(nameof(ShootReset), timeBetweenShots);
+                    }
                 }
             }
         }
-
-
-
     }
     void ShootReset()
     {
@@ -53,12 +63,10 @@ public class Gun : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if(targetManager.currentTarget != null)
+        if (targetManager.currentTarget != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, targetManager.currentTarget.transform.position);
+            Gizmos.DrawRay(transform.position, targetManager.currentTarget.transform.position - transform.position);
         }
-        
-
     }
 }

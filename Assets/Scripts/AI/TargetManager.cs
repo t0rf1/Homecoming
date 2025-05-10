@@ -9,8 +9,11 @@ public class TargetManager : MonoBehaviour
     // Add Target
     public void AddTarget(Target target)
     {
+        
         targets.Add(target);
     }
+
+    
 
     // Remove Target
     public void RemoveTarget(Target target)
@@ -40,6 +43,16 @@ public class TargetManager : MonoBehaviour
 
     private void Update()
     {
+        if (currentTarget != null)
+        {
+            Vector3 projectedVector = Vector3.ProjectOnPlane(currentTarget.transform.position - transform.position, transform.up);
+            if (Vector3.SignedAngle(projectedVector, transform.forward, transform.forward) <= 100)
+            {
+
+            }
+        }
+
+
         if (targets.Count > 1)
         {
             SortTargets();
@@ -62,7 +75,7 @@ public class TargetManager : MonoBehaviour
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                currentTarget = target;
+                currentTarget = target; 
             }
         }
     }
