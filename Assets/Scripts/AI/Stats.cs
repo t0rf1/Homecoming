@@ -57,8 +57,14 @@ public class Stats : MonoBehaviour, IDamagable
     {
         if (hp <= 0)
         {
+            
             Destroy(transform.parent.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
 }

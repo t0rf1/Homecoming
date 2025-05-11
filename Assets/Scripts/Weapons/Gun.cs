@@ -63,10 +63,6 @@ public class Gun : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if (targetManager.currentTarget != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, targetManager.currentTarget.transform.position - transform.position);
-        }
+       
     }
 }

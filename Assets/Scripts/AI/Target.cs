@@ -5,6 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     TargetManager targetManager;
+    
 
     private void Start()
     {
@@ -14,5 +15,6 @@ public class Target : MonoBehaviour
     private void OnDestroy()
     {
         targetManager.RemoveTarget(this);
+
     }
 }
