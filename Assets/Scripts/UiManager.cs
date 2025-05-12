@@ -8,6 +8,8 @@ public class UiManager : MonoBehaviour
 {
     public TextMeshProUGUI hpText;
     public Stats playerStats;
+
+    public GameObject lockPanel;
     // Start is called before the first frame update
     void Start()
     {
