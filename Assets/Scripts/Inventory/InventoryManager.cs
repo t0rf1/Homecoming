@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     #region Data
-    [SerializeField] private InputManager inputManager;
+    private InputManager inputManager;
     private DialogueTrigger dialogueTrigger;
 
     public GameObject InventoryMenu;
@@ -34,6 +34,11 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
+
+        InspectPanel inspectPanel = FindObjectOfType<InspectPanel>();
+        inspectPanel.gameObject.SetActive(false);
+
         //Get a list of all ITEM SLOTS
         itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
 
