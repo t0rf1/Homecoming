@@ -12,19 +12,25 @@ public class InventoryManager : MonoBehaviour
     private InputManager inputManager;
     private DialogueTrigger dialogueTrigger;
 
+    private Commands commands;
+
     public GameObject InventoryMenu;
     private bool menuActivated;
     public List<ItemSlot> itemSlots = new List<ItemSlot>();
 
     public List<ItemSO> itemSOs = new List<ItemSO>();
 
-    [SerializeField] private GameObject inspectPanel;
+    private InspectPanel inspectPanel;
 
     public ItemSlot selectedItemSlot;
 
     ItemsUseLogic itemUseLogic;
 
     bool shouldEndDialogue = false;
+
+    [Header("Item equipped")]
+    [SerializeField] Image equippedImage;
+    [SerializeField] Button unequipButton;
     #endregion
 
     private void Awake()
@@ -36,8 +42,10 @@ public class InventoryManager : MonoBehaviour
     {
         inputManager = FindObjectOfType<InputManager>();
 
-        InspectPanel inspectPanel = FindObjectOfType<InspectPanel>();
+        inspectPanel = FindObjectOfType<InspectPanel>();
         inspectPanel.gameObject.SetActive(false);
+
+        commands = FindObjectOfType<Commands>();
 
         //Get a list of all ITEM SLOTS
         itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
@@ -136,9 +144,19 @@ public class InventoryManager : MonoBehaviour
 
     public void InspectItem()
     {
-        inspectPanel.SetActive(true);
+        inspectPanel.gameObject.SetActive(true);
 
-        EventSystem.current.SetSelectedGameObject(inspectPanel);
+        EventSystem.current.SetSelectedGameObject(inspectPanel.gameObject);
+    }
+
+    public void EquipItem()
+    {
+        equippedImage.sprite = inspectPanel.itemInspectImage.sprite;
+        unequipButton.interactable = true;
+        selectedItemSlot.ResetSlot();
+        ResetSelectedItemSlot();
+        DeactivateCommands();
+        EventSystem.current.SetSelectedGameObject(unequipButton.gameObject);
     }
 
     public void SetSelectedItemSlot()
@@ -155,5 +173,12 @@ public class InventoryManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(slot.gameObject);
             }
         }
+    }
+
+    public void DeactivateCommands()
+    {
+        commands.equipCommand.interactable = false;
+        commands.useCommand.interactable = false;
+        commands.inspectCommand.interactable = false;
     }
 }

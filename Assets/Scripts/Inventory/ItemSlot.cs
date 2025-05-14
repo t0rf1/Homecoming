@@ -38,7 +38,6 @@ public class ItemSlot : MonoBehaviour
         {
             ResetSlot();
         }
-
     }
 
     public int AddItemToSlot(ItemSO item, int itemQuantity)
@@ -107,11 +106,10 @@ public class ItemSlot : MonoBehaviour
         if (itemQuantity <= 0)
         {
             ResetSlot();
-            ClearInspectPanel();
         }
     }
 
-    private void ResetSlot()
+    public void ResetSlot()
     {
         //Clean SLOT
         itemSlotQuantity.enabled = false;
@@ -126,7 +124,10 @@ public class ItemSlot : MonoBehaviour
 
         //Change selected ITEM SLOT
         inventoryManager?.ResetSelectedItemSlot();
+
+        ClearInspectPanel() ;
     }
+
     private void ClearInspectPanel()
     {
         inspectPanel.itemInspectName.text = "";

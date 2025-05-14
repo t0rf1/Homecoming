@@ -1156,9 +1156,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryCommands, Assembly-CSharp
-        m_MethodName: Equip
+      - m_Target: {fileID: 8507478748515931876}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: EquipItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1793,7 +1793,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.9549617, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -2750,8 +2750,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6174ebec62150e4da0b953211bc3f5b, type: 2}
   - {fileID: 11400000, guid: f75ebf8d2d04e2e4fb37a710e4c196f6, type: 2}
   - {fileID: 11400000, guid: c0251c27da8cb344bb654b97ca010c6a, type: 2}
-  inspectPanel: {fileID: 7265464223977368008}
   selectedItemSlot: {fileID: 0}
+  equippedImage: {fileID: 4794995443148424175}
+  unequipButton: {fileID: 6928303289308000403}
 --- !u!114 &603063538847028264
 MonoBehaviour:
   m_ObjectHideFlags: 0
