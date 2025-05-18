@@ -15,11 +15,13 @@ public class Player : MonoBehaviour
 
     //Interactions
     private Interactable objectToInteract = null;
-    public GameObject objectToInteractGameObject;
+    [System.NonSerialized] public GameObject objectToInteractGameObject;
 
     //Animations
-    public Animator animator;
+    private Animator animator;
     private float animationDampTime = 0.1f;
+
+    [SerializeField] private GameObject FirePoker;
 
     private void Start()
     {
@@ -69,6 +71,7 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
         animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
+        animator.SetBool("isWalking", isWalking);
 
         //Turning
         if (rotateVector.x != 0f && !isWalking)
@@ -118,5 +121,11 @@ public class Player : MonoBehaviour
                 objectToInteractGameObject = null;
             }
         }
+    }
+
+    public void AnimatorSetIsEquipped(bool isEquipped)
+    {
+        animator.SetBool("isEquipped", isEquipped);
+        FirePoker.SetActive(isEquipped);
     }
 }

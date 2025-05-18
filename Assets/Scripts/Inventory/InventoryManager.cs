@@ -31,6 +31,8 @@ public class InventoryManager : MonoBehaviour
     [Header("Item equipped")]
     [SerializeField] Image equippedImage;
     [SerializeField] Button unequipButton;
+
+    private Player player;
     #endregion
 
     private void Awake()
@@ -52,11 +54,14 @@ public class InventoryManager : MonoBehaviour
 
         dialogueTrigger = GetComponent<DialogueTrigger>();
         InventoryMenu.SetActive(false);
-        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
 
+        //Listen to events
+        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
         inputManager.OnInteractAction += InputManager_OnInteractAction;
 
         itemUseLogic = GetComponent<ItemsUseLogic>();
+
+        player = FindObjectOfType<Player>();
     }
 
     private void InputManager_OnInteractAction(object sender, System.EventArgs e)
@@ -157,6 +162,8 @@ public class InventoryManager : MonoBehaviour
         ResetSelectedItemSlot();
         DeactivateCommands();
         EventSystem.current.SetSelectedGameObject(unequipButton.gameObject);
+
+        player.AnimatorSetIsEquipped(true);
     }
 
     public void SetSelectedItemSlot()
