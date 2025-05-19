@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.Inventory.performed += Inventory_performed;
         playerInputActions.Player.Attack.performed += Attack_performed;
+        playerInputActions.Player.Sprint.performed += Sprint_performed;
     }
 
 
@@ -50,8 +51,12 @@ public class InputManager : MonoBehaviour
 
         return inputVector;
     }
-    //----Sprint----
-    
+
+    //---------------SPRINT---------------
+    private void Sprint_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnSprintAction?.Invoke(this, EventArgs.Empty);
+    }
 
     //---------------ROTATION---------------
     public Vector2 GetRotationVector()

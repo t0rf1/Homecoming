@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.75
   rotateSpeed: 150
+  sprintMultiplier: 1.5
   FirePoker: {fileID: 7731103837970264797}
 --- !u!143 &2997162263138499597
 CharacterController:

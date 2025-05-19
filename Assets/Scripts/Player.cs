@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotateSpeed = .5f;
     Vector2 movementVector;
     Vector2 rotateVector;
+    bool sprinting;
+    public float sprintMultiplier = 2f;
 
     //Interactions
     private Interactable objectToInteract = null;
@@ -31,6 +33,12 @@ public class Player : MonoBehaviour
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
+        inputManager.OnSprintAction += InputManager_OnSprintAction;
+    }
+
+    private void InputManager_OnSprintAction(object sender, System.EventArgs e)
+    {
+        sprinting = true;
     }
 
     private void InputManager_OnAttackAction(object sender, System.EventArgs e)
@@ -49,7 +57,6 @@ public class Player : MonoBehaviour
 
         HandleAnimations();
     }
-
     
     private void LateUpdate()
     {
@@ -61,17 +68,19 @@ public class Player : MonoBehaviour
 
     private void HandleAnimations()
     {
-        bool isWalking = false;
-
+        //Setting isWalking
+        bool isWalking;
         if (movementVector.magnitude != 0f)
         {
             isWalking = true;
         }
         else isWalking = false;
 
+        //Walking
         animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
         animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
         animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isSprinting", sprinting);
 
         //Turning
         if (rotateVector.x != 0f && !isWalking)
@@ -86,6 +95,19 @@ public class Player : MonoBehaviour
     {
         //Getting movement input
         movementVector = inputManager.GetMovementVectorNormalized();
+
+        //Modyfying sprint
+        if (movementVector.y <= 0)
+        {
+            sprinting = false;
+        }
+
+        if (sprinting && movementVector.y > 0)
+        {
+            movementVector.y *= sprintMultiplier;
+        }
+
+        //Converting to Vector3
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
         //Getting rotation input
