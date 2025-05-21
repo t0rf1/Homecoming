@@ -38,12 +38,15 @@ public class Player : MonoBehaviour
 
     private void InputManager_OnSprintAction(object sender, System.EventArgs e)
     {
-        sprinting = true;
+        if (!animator.GetBool("isReady"))
+        {
+            sprinting = true;
+        }
     }
 
     private void InputManager_OnAttackAction(object sender, System.EventArgs e)
     {
-       
+        animator.SetTrigger("Attack");
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
