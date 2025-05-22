@@ -31,6 +31,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Item equipped")]
     [SerializeField] Image equippedImage;
     [SerializeField] Button unequipButton;
+    ItemSO selectedItem;
 
     private Player player;
     #endregion
@@ -156,7 +157,8 @@ public class InventoryManager : MonoBehaviour
 
     public void EquipItem()
     {
-        equippedImage.sprite = inspectPanel.itemInspectImage.sprite;
+        selectedItem = selectedItemSlot.GetComponent<ItemSlot>().item;
+        equippedImage.sprite = selectedItem.itemSprite;
         unequipButton.interactable = true;
         selectedItemSlot.ResetSlot();
         ResetSelectedItemSlot();
@@ -164,6 +166,17 @@ public class InventoryManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(unequipButton.gameObject);
 
         player.AnimatorSetIsEquipped(true);
+    }
+
+    public void UnequipItem()
+    {
+        AddItem(selectedItem, 1);
+        equippedImage.sprite = null;
+        unequipButton.interactable = false;
+        ResetSelectedItemSlot();
+        DeactivateCommands();
+
+        player.AnimatorSetIsEquipped(false);
     }
 
     public void SetSelectedItemSlot()

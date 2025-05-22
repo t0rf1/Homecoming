@@ -34,6 +34,24 @@ public class Player : MonoBehaviour
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
         inputManager.OnSprintAction += InputManager_OnSprintAction;
+        inputManager.OnReadyStart += InputManager_OnReadyStart;
+        inputManager.OnReadyFinish += InputManager_OnReadyFinish;
+    }
+
+    private void InputManager_OnReadyStart(object sender, System.EventArgs e)
+    {
+        if (animator.GetBool("isEquipped"))
+        {
+            animator.SetBool("isReady", true);
+            sprinting = false;
+        }
+    }
+    private void InputManager_OnReadyFinish(object sender, System.EventArgs e)
+    {
+        if (animator.GetBool("isEquipped"))
+        {
+            animator.SetBool("isReady", false);
+        }
     }
 
     private void InputManager_OnSprintAction(object sender, System.EventArgs e)
@@ -60,7 +78,7 @@ public class Player : MonoBehaviour
 
         HandleAnimations();
     }
-    
+
     private void LateUpdate()
     {
         ////Animations; Lock Y position
