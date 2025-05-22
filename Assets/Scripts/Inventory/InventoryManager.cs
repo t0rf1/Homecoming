@@ -9,8 +9,10 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     #region Data
-    [SerializeField] private InputManager inputManager;
+    private InputManager inputManager;
     private DialogueTrigger dialogueTrigger;
+
+    private Commands commands;
 
     public GameObject InventoryMenu;
     private bool menuActivated;
@@ -18,13 +20,20 @@ public class InventoryManager : MonoBehaviour
 
     public List<ItemSO> itemSOs = new List<ItemSO>();
 
-    [SerializeField] private GameObject inspectPanel;
+    private InspectPanel inspectPanel;
 
     public ItemSlot selectedItemSlot;
 
     ItemsUseLogic itemUseLogic;
 
     bool shouldEndDialogue = false;
+
+    [Header("Item equipped")]
+    [SerializeField] Image equippedImage;
+    [SerializeField] Button unequipButton;
+    ItemSO selectedItem;
+
+    private Player player;
     #endregion
 
     private void Awake()
@@ -34,16 +43,26 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
+
+        inspectPanel = FindObjectOfType<InspectPanel>();
+        inspectPanel.gameObject.SetActive(false);
+
+        commands = FindObjectOfType<Commands>();
+
         //Get a list of all ITEM SLOTS
         itemSlots = FindObjectsOfType<ItemSlot>().OrderBy(go => go.name).ToList();
 
         dialogueTrigger = GetComponent<DialogueTrigger>();
         InventoryMenu.SetActive(false);
-        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
 
+        //Listen to events
+        inputManager.OnInventoryAction += InputManager_OnInventoryAction;
         inputManager.OnInteractAction += InputManager_OnInteractAction;
 
         itemUseLogic = GetComponent<ItemsUseLogic>();
+
+        player = FindObjectOfType<Player>();
     }
 
     private void InputManager_OnInteractAction(object sender, System.EventArgs e)
@@ -131,9 +150,33 @@ public class InventoryManager : MonoBehaviour
 
     public void InspectItem()
     {
-        inspectPanel.SetActive(true);
+        inspectPanel.gameObject.SetActive(true);
 
-        EventSystem.current.SetSelectedGameObject(inspectPanel);
+        EventSystem.current.SetSelectedGameObject(inspectPanel.gameObject);
+    }
+
+    public void EquipItem()
+    {
+        selectedItem = selectedItemSlot.GetComponent<ItemSlot>().item;
+        equippedImage.sprite = selectedItem.itemSprite;
+        unequipButton.interactable = true;
+        selectedItemSlot.ResetSlot();
+        ResetSelectedItemSlot();
+        DeactivateCommands();
+        EventSystem.current.SetSelectedGameObject(unequipButton.gameObject);
+
+        player.AnimatorSetIsEquipped(true);
+    }
+
+    public void UnequipItem()
+    {
+        AddItem(selectedItem, 1);
+        equippedImage.sprite = null;
+        unequipButton.interactable = false;
+        ResetSelectedItemSlot();
+        DeactivateCommands();
+
+        player.AnimatorSetIsEquipped(false);
     }
 
     public void SetSelectedItemSlot()
@@ -150,5 +193,12 @@ public class InventoryManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(slot.gameObject);
             }
         }
+    }
+
+    public void DeactivateCommands()
+    {
+        commands.equipCommand.interactable = false;
+        commands.useCommand.interactable = false;
+        commands.inspectCommand.interactable = false;
     }
 }

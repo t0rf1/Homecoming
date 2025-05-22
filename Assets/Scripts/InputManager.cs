@@ -8,6 +8,11 @@ public class InputManager : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnInventoryAction;
     public event EventHandler OnAttackAction;
+    public event EventHandler OnSprintAction;
+
+    public event EventHandler OnReadyStart;
+    public event EventHandler OnReadyFinish;
+
     private PlayerInputActions playerInputActions;
 
     private void Awake()
@@ -18,7 +23,13 @@ public class InputManager : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.Inventory.performed += Inventory_performed;
         playerInputActions.Player.Attack.performed += Attack_performed;
+        playerInputActions.Player.Sprint.performed += Sprint_performed;
+
+        playerInputActions.Player.Ready.started += Ready_started;
+        playerInputActions.Player.Ready.canceled += Ready_canceled;
     }
+
+
 
 
 
@@ -26,6 +37,16 @@ public class InputManager : MonoBehaviour
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnAttackAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    //---------------READY---------------
+    private void Ready_started(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnReadyStart?.Invoke(this, EventArgs.Empty);
+    }
+    private void Ready_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnReadyFinish?.Invoke(this, EventArgs.Empty);
     }
 
     //---------------INVENTORY---------------
@@ -48,6 +69,12 @@ public class InputManager : MonoBehaviour
         inputVector = inputVector.normalized;
 
         return inputVector;
+    }
+
+    //---------------SPRINT---------------
+    private void Sprint_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnSprintAction?.Invoke(this, EventArgs.Empty);
     }
 
     //---------------ROTATION---------------

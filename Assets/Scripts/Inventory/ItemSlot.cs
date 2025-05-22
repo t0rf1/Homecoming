@@ -13,13 +13,10 @@ public class ItemSlot : MonoBehaviour
     public bool isFull;
 
     private InventoryManager inventoryManager;
+    private Commands commands;
+    private InspectPanel inspectPanel;
 
     [SerializeField] int maxNumberOfItems = 99;
-
-    [Header("Commands")]
-    [SerializeField] private Button inspectCommand;
-    [SerializeField] private Button useCommand;
-    [SerializeField] private Button equipCommand;
 
     [Header("Item data")]
     public ItemSO item;
@@ -28,20 +25,19 @@ public class ItemSlot : MonoBehaviour
     [Header("Item slot")]
     [SerializeField] private Image itemSlotSprite;
     [SerializeField] private TMP_Text itemSlotQuantity;
-
-    [Header("Description panel")]
-    [SerializeField] private TMP_Text itemInspectName;
-    [SerializeField] private TMP_Text itemInspectDescription;
-    [SerializeField] private Image itemInspectImage;
     #endregion
 
     private void Start()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+
+        commands = FindObjectOfType<Commands>();
+        inspectPanel = FindObjectOfType<InspectPanel>();
+
         if (item == null)
         {
             ResetSlot();
         }
-        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     public int AddItemToSlot(ItemSO item, int itemQuantity)
@@ -87,17 +83,17 @@ public class ItemSlot : MonoBehaviour
     public void ItemSelected()
     {
         //Send item data to INSPECT PANEL
-        itemInspectName.text = item.itemName.ToString();
-        itemInspectDescription.text = item.itemDescription.ToString();
-        itemInspectImage.sprite = item.itemSprite;
+        inspectPanel.itemInspectName.text = item.itemName.ToString();
+        inspectPanel.itemInspectDescription.text = item.itemDescription.ToString();
+        inspectPanel.itemInspectImage.sprite = item.itemSprite;
 
         //set COMMAND BUTTONS
-        inspectCommand.interactable = true;
-        useCommand.interactable = item.usable;
-        equipCommand.interactable = item.equipable;
+        commands.inspectCommand.interactable = true;
+        commands.useCommand.interactable = item.usable;
+        commands.equipCommand.interactable = item.equipable;
 
         //Event System set SELECTED
-        EventSystem.current.SetSelectedGameObject(inspectCommand.gameObject);
+        EventSystem.current.SetSelectedGameObject(commands.inspectCommand.gameObject);
 
         inventoryManager.selectedItemSlot = this;
     }
@@ -113,7 +109,7 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    private void ResetSlot()
+    public void ResetSlot()
     {
         //Clean SLOT
         itemSlotQuantity.enabled = false;
@@ -123,20 +119,19 @@ public class ItemSlot : MonoBehaviour
         item = null;
         itemQuantity = 0;
 
-        //Clean INSPECT PANEL
-        itemInspectName.text = "";
-        itemInspectDescription.text = "";
-        itemInspectImage.sprite = null;
-
-        //set COMMAND BUTTONS
-        inspectCommand.interactable = false;
-        useCommand.interactable = false;
-        equipCommand.interactable = false;
-
         //Make non selectable
         gameObject.GetComponent<Button>().enabled = false;
 
         //Change selected ITEM SLOT
         inventoryManager?.ResetSelectedItemSlot();
+
+        ClearInspectPanel() ;
+    }
+
+    private void ClearInspectPanel()
+    {
+        inspectPanel.itemInspectName.text = "";
+        inspectPanel.itemInspectDescription.text = "";
+        inspectPanel.itemInspectImage.sprite = null;
     }
 }

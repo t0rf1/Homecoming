@@ -32,7 +32,6 @@ public class ItemsUseLogic : MonoBehaviour
 
             case ItemType.key:
                 return KeyLogic(itemSO);
-
         }
         return false;
     }

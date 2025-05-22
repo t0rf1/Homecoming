@@ -129,6 +129,30 @@ MonoBehaviour:
       - "Nie mog\u0119 tutaj tego u\u017Cy\u0107"
       Flags: 0000
       Languages_Touch: []
+    - Term: Items/FirePoker
+      TermType: 0
+      Description: 
+      Languages:
+      - Fire Poker
+      - Pogrzebacz
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/FirePokerDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - Fire poker, looks useful for self-defence
+      - "Pogrzebacz, wydaje si\u0119 dobry do samoobrony"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Commands/Unequip
+      TermType: 0
+      Description: 
+      Languages:
+      - Unequip
+      - Odekwipuj
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

@@ -5,35 +5,66 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Walking
     private CharacterController characterController;
-    [SerializeField] private InputManager inputManager;
+    private InputManager inputManager;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
+    Vector2 movementVector;
+    Vector2 rotateVector;
+    bool sprinting;
+    public float sprintMultiplier = 2f;
 
     //Interactions
     private Interactable objectToInteract = null;
-    public GameObject objectToInteractGameObject;
+    [System.NonSerialized] public GameObject objectToInteractGameObject;
 
-    ////Animations
-    //public Animator animator;
-    //private float animationDampTime = 0.1f;
-    //private float fixedYPosition;
+    //Animations
+    private Animator animator;
+    private float animationDampTime = 0.1f;
+
+    [SerializeField] private GameObject FirePoker;
 
     private void Start()
     {
+        inputManager = FindObjectOfType<InputManager>();
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
+        inputManager.OnSprintAction += InputManager_OnSprintAction;
+        inputManager.OnReadyStart += InputManager_OnReadyStart;
+        inputManager.OnReadyFinish += InputManager_OnReadyFinish;
+    }
 
-        ////Animations
-        //animator = GetComponent<Animator>();
-        //fixedYPosition = transform.position.y;
+    private void InputManager_OnReadyStart(object sender, System.EventArgs e)
+    {
+        if (animator.GetBool("isEquipped"))
+        {
+            animator.SetBool("isReady", true);
+            sprinting = false;
+        }
+    }
+    private void InputManager_OnReadyFinish(object sender, System.EventArgs e)
+    {
+        if (animator.GetBool("isEquipped"))
+        {
+            animator.SetBool("isReady", false);
+        }
+    }
+
+    private void InputManager_OnSprintAction(object sender, System.EventArgs e)
+    {
+        if (!animator.GetBool("isReady"))
+        {
+            sprinting = true;
+        }
     }
 
     private void InputManager_OnAttackAction(object sender, System.EventArgs e)
     {
-       
+        animator.SetTrigger("Attack");
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -45,23 +76,7 @@ public class Player : MonoBehaviour
     {
         HandleMovement();
 
-        ////Animations
-        //if (movementVector.magnitude != 0f)
-        //{
-        //    animator.SetBool("isWalking", true);
-        //}
-        //else animator.SetBool("isWalking", false);
-
-        //animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
-        //animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
-
-        //if (rotateVector.x != 0f)
-        //{
-        //    animator.SetBool("isTurning", true);
-        //}
-        //else animator.SetBool("isTurning", false);
-
-        //animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
+        HandleAnimations();
     }
 
     private void LateUpdate()
@@ -72,14 +87,52 @@ public class Player : MonoBehaviour
         //transform.position = position;
     }
 
+    private void HandleAnimations()
+    {
+        //Setting isWalking
+        bool isWalking;
+        if (movementVector.magnitude != 0f)
+        {
+            isWalking = true;
+        }
+        else isWalking = false;
+
+        //Walking
+        animator.SetFloat("x", movementVector.x, animationDampTime, Time.deltaTime);
+        animator.SetFloat("y", movementVector.y, animationDampTime, Time.deltaTime);
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isSprinting", sprinting);
+
+        //Turning
+        if (rotateVector.x != 0f && !isWalking)
+        {
+            animator.SetBool("isTurning", true);
+        }
+        else animator.SetBool("isTurning", false);
+        animator.SetFloat("turn", rotateVector.x, animationDampTime, Time.deltaTime);
+    }
+
     private void HandleMovement()
     {
         //Getting movement input
-        Vector2 movementVector = inputManager.GetMovementVectorNormalized();
+        movementVector = inputManager.GetMovementVectorNormalized();
+
+        //Modyfying sprint
+        if (movementVector.y <= 0)
+        {
+            sprinting = false;
+        }
+
+        if (sprinting && movementVector.y > 0)
+        {
+            movementVector.y *= sprintMultiplier;
+        }
+
+        //Converting to Vector3
         Vector3 moveDirection = new Vector3(movementVector.x, 0f, movementVector.y);
 
         //Getting rotation input
-        Vector2 rotateVector = inputManager.GetRotationVector();
+        rotateVector = inputManager.GetRotationVector();
 
         //Transform player
         moveDirection = transform.TransformDirection(moveDirection);
@@ -111,5 +164,11 @@ public class Player : MonoBehaviour
                 objectToInteractGameObject = null;
             }
         }
+    }
+
+    public void AnimatorSetIsEquipped(bool isEquipped)
+    {
+        animator.SetBool("isEquipped", isEquipped);
+        FirePoker.SetActive(isEquipped);
     }
 }
