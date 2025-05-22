@@ -4,14 +4,64 @@ using UnityEngine;
 
 public class Meele : MonoBehaviour
 {
-    public float damage;
-    public bool canCombo;
-    int swingInRow; 
+    public int damage;
+    public float stunnDuration, timeBetweenAttacks = 0.5f;
+    public bool canCombo, canAttack = true;
+    int swingInRow = 0;
+    
+    public List <Collider> targets;
+
+    private void Start()
+    {
+        canAttack = true;
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack)
         {
+            canAttack = false;
+            if (canCombo)
+            {
+                swingInRow++;
+            }
+            //enemy in range? do zmiany póŸniej w przypadku trafiania coliderem w animacjii
+            if (targets.Count > 0)
+            {
+                DoDamageToEnemy();
+            }
+
             //Animacja uderzania
+            Invoke(nameof(AttackReset), timeBetweenAttacks);
+        }
+    }
+
+
+    void AttackReset()
+    {
+        canAttack = true;   
+    }
+    void DoDamageToEnemy()
+    {
+        foreach(var target in targets)
+        {
+           
+            target.GetComponent<IDamagable>().TakeDamage(damage, stunnDuration);
+
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            targets.Add(other);
+        }
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            targets.Remove(other);
             
         }
     }

@@ -8,7 +8,7 @@ public interface IDamagable
     /// Apply damage to entity though this function
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage);
+    public void TakeDamage(int damage, float stunnDuration);
    
 }
 

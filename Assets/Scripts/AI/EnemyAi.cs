@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour,IDamagable
+public class NewBehaviourScript : MonoBehaviour
 {
-    public float maxhp, hp; 
+    public float gunSightDistance;
+    public int damage;
 
-
+    Stats stats;
     public NavMeshAgent agent;
 
     public Transform player;
@@ -13,9 +14,10 @@ public class NewBehaviourScript : MonoBehaviour,IDamagable
     public LayerMask whatIsGround, whatIsPlayer;
 
     RaycastHit hit;
+
     //patrolling
     public Vector3 walkPoint;
-    bool walkPointSet;
+    bool walkPointSet = false;
     public float walkPointRange;
 
     //Atacking
@@ -26,11 +28,14 @@ public class NewBehaviourScript : MonoBehaviour,IDamagable
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+
     private void Awake()
     {
-        hp = maxhp;
+
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        stats = GetComponentInChildren<Stats>();
     }
 
     private void Update()
@@ -38,30 +43,48 @@ public class NewBehaviourScript : MonoBehaviour,IDamagable
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if(playerInSightRange && playerInAttackRange) AttackPlayer();
+        //DistanceToPlayer();
+
+        if (stats.state == E_States.Stunned)
+        {
+            Stunned();
+        }
+        else
+        {
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+                Patroling();
+            }
+            else if (playerInSightRange && !playerInAttackRange)
+            {
+                ChasePlayer();
+            }
+            else
+                if (playerInSightRange && playerInAttackRange)
+            {
+                AttackPlayer();
+            }
+        }
+
     }
 
     void Patroling()
     {
 
-        if(!walkPointSet)
+        if (walkPointSet == false)
         {
             SearchWalkPoint();
         }
 
-        if(walkPointSet)
+        if (walkPointSet == true)
         {
-            Debug.Log("Walking");
             agent.SetDestination(walkPoint);
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
-        if(distanceToWalkPoint.magnitude <1f)
+        if (distanceToWalkPoint.magnitude < 1f)
         {
             walkPointSet = false;
         }
@@ -69,59 +92,60 @@ public class NewBehaviourScript : MonoBehaviour,IDamagable
     }
     void SearchWalkPoint()
     {
+
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if(Physics.Raycast(walkPoint, - transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
             walkPointSet = true;
+
+        }
+        else
+        {
+            Debug.LogWarning("Mo¿liwe ¿e nie ustawiono pod³ogi jako layer Ground");
         }
 
-        if(Physics.Raycast(transform.position, walkPoint, out hit))
-        {
-            if(hit.collider != null)
-            {
-                Debug.Log("Terrain");
-            }
-        }
+        //if(Physics.Raycast(transform.position, walkPoint, out hit))
+        //{
+        //    if(hit.collider != null)
+        //    {
+        //        Debug.Log("Terrain");
+        //    }
+        //}
     }
     void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
 
+    void Stunned()
+    {
+        agent.SetDestination(transform.position);
+    }
     void AttackPlayer()
     {
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
-        if(!alreadyAttacked)
+        if (!alreadyAttacked)
         {
             ///Attack code here
-
+            if (player.TryGetComponent<IDamagable>(out IDamagable damagable))
+            {
+                damagable.TakeDamage(damage, 0);
+            }
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAtacks);
         }
-
     }
 
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        hp -= damage;
-
-        if (hp <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-    }
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
@@ -130,8 +154,27 @@ public class NewBehaviourScript : MonoBehaviour,IDamagable
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, player.position );    
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, player.position - transform.position );
+
     }
 
+    void DistanceToPlayer()
+    {
+        //Debug.Log(player.position);
+
+        if (Physics.Raycast(transform.position, player.position, gunSightDistance, whatIsGround))
+        {
+
+            //jeœli œciana
+            //Debug.Log("Wall in between");
+        }
+        else
+        {
+            if(Vector3.Distance(transform.position,  player.position) <= gunSightDistance)
+            {
+                //Check rotation
+            }
+        }
+    }
 }
