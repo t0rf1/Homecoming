@@ -411,9 +411,8 @@ GameObject:
   - component: {fileID: 5469450901528972757}
   - component: {fileID: 2997162263138499597}
   - component: {fileID: 6215526956387531586}
-  m_Layer: 6
   - component: {fileID: 3393706846806448330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -498,6 +497,27 @@ MonoBehaviour:
   state: 0
   timeBetweenCanBeStunned: 0.5
   canBeStunned: 1
+--- !u!95 &3393706846806448330
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971993269993529661}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: be980603c8354144aa297bba78e01f79, type: 3}
+  m_Controller: {fileID: 9100000, guid: d033bd618999d3c43bf4fedb69ed58f6, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7600749344684587787
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,28 +586,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   stunnDuration: 0
+  timeBetweenAttacks: 0.5
   canCombo: 0
---- !u!95 &3393706846806448330
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6971993269993529661}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: be980603c8354144aa297bba78e01f79, type: 3}
-  m_Controller: {fileID: 9100000, guid: d033bd618999d3c43bf4fedb69ed58f6, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  canAttack: 1
+  targets: []
 --- !u!1001 &5346056651041830043
 PrefabInstance:
   m_ObjectHideFlags: 0
