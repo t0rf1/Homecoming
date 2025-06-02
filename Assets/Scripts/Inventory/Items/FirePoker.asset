@@ -24,7 +24,7 @@ MonoBehaviour:
     mRTL_MaxLineLength: 0
     mRTL_ConvertNumbers: 0
     m_DontLocalizeParameters: 0
-  itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  itemSprite: {fileID: 21300000, guid: b7b408a104575ec408190d64fa7f9b07, type: 3}
   itemType: 4
   usable: 0
   equipable: 1

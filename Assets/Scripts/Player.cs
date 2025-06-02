@@ -25,11 +25,14 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject FirePoker;
 
+    HeadLook headLook;
+
     private void Start()
     {
         inputManager = FindObjectOfType<InputManager>();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        headLook = GetComponent<HeadLook>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
@@ -170,5 +173,10 @@ public class Player : MonoBehaviour
     {
         animator.SetBool("isEquipped", isEquipped);
         FirePoker.SetActive(isEquipped);
+    }
+
+    public void SetLookTarget(Transform target)
+    {
+        headLook.targetObject = target;
     }
 }
