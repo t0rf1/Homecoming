@@ -97,6 +97,7 @@ public class InventoryManager : MonoBehaviour
     public void TurnOffInventory()
     {
         Time.timeScale = 1f;
+        inspectPanel.gameObject.SetActive(false);
         InventoryMenu.SetActive(false);
         menuActivated = false;
     }

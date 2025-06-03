@@ -17,7 +17,7 @@ public class HeadLook : MonoBehaviour
 
     void LateUpdate()
     {
-        if(targetObject != null)
+        if (targetObject != null)
         {
             Vector3 direction = (targetObject.position - headBone.position).normalized;
             float angle = Vector3.SignedAngle(direction, headForward.forward, headForward.up);
