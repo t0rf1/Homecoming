@@ -153,6 +153,14 @@ MonoBehaviour:
       - Odekwipuj
       Flags: 0000
       Languages_Touch: []
+    - Term: Doors/DoorHardLocked
+      TermType: 0
+      Description: 
+      Languages:
+      - I can't open these doors
+      - "Nie mog\u0119 otworzy\u0107 tych drzwi"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
