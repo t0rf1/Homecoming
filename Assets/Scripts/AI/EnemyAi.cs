@@ -40,9 +40,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position , sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
+        
         //DistanceToPlayer();
 
         if (stats.state == E_States.Stunned)
@@ -53,15 +53,18 @@ public class NewBehaviourScript : MonoBehaviour
         {
             if (!playerInSightRange && !playerInAttackRange)
             {
+                Debug.Log("Patrol");
                 Patroling();
             }
             else if (playerInSightRange && !playerInAttackRange)
             {
+                Debug.Log("Chase");
                 ChasePlayer();
             }
             else
                 if (playerInSightRange && playerInAttackRange)
             {
+                Debug.Log("Attack");
                 AttackPlayer();
             }
         }
