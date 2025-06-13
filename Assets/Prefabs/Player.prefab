@@ -344,7 +344,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2996296999280374254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -428,7 +428,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3073832256953881582}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88ebb87c2879f045a35f3b9488556fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.75
+  moveSpeed: 1.7
   rotateSpeed: 150
   sprintMultiplier: 1.5
   FirePoker: {fileID: 7731103837970264797}
@@ -701,6 +701,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 5644739079455811716}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -739,6 +751,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: be980603c8354144aa297bba78e01f79, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3724609395492615570, guid: be980603c8354144aa297bba78e01f79, type: 3}
       propertyPath: m_Materials.Array.data[0]

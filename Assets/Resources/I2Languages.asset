@@ -41,14 +41,6 @@ MonoBehaviour:
       - "co\u015B"
       Flags: 0000
       Languages_Touch: []
-    - Term: Items/FirstAidKit
-      TermType: 0
-      Description: 
-      Languages:
-      - First aid kit
-      - Apteczka
-      Flags: 0000
-      Languages_Touch: []
     - Term: Commands/Inspect
       TermType: 0
       Description: 
@@ -73,14 +65,6 @@ MonoBehaviour:
       - Wyekwipuj
       Flags: 0000
       Languages_Touch: []
-    - Term: Items/Photograph
-      TermType: 0
-      Description: 
-      Languages:
-      - Photograph
-      - "Zdj\u0119cie"
-      Flags: 0000
-      Languages_Touch: []
     - Term: Doors/DoorUnlocked
       TermType: 0
       Description: 
@@ -89,15 +73,7 @@ MonoBehaviour:
       - "Odblokowa\u0142em drzwi"
       Flags: 0000
       Languages_Touch: []
-    - Term: Items/Keys/Key
-      TermType: 0
-      Description: 
-      Languages:
-      - Key
-      - Klucz
-      Flags: 0000
-      Languages_Touch: []
-    - Term: Items/Keys/KeyDescription
+    - Term: Items/KeyDescription
       TermType: 0
       Description: 
       Languages:
@@ -125,8 +101,8 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - I cannot use that here
-      - "Nie mog\u0119 tutaj tego u\u017Cy\u0107"
+      - I cannot use that now
+      - "Nie mog\u0119 teraz tego u\u017Cy\u0107"
       Flags: 0000
       Languages_Touch: []
     - Term: Items/FirePoker
@@ -137,7 +113,7 @@ MonoBehaviour:
       - Pogrzebacz
       Flags: 0000
       Languages_Touch: []
-    - Term: Items/FirePokerDescription
+    - Term: Items/Description/FirePokerDescription
       TermType: 0
       Description: 
       Languages:
@@ -159,6 +135,110 @@ MonoBehaviour:
       Languages:
       - I can't open these doors
       - "Nie mog\u0119 otworzy\u0107 tych drzwi"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/FamilyPhoto
+      TermType: 0
+      Description: 
+      Languages:
+      - Family photo
+      - "Zdj\u0119cie rodzinne"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/FamilyPhotoDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - "One big, happy family\u2026 Bullshit. There is a date - 1987."
+      - "Wielka, szcz\u0119\u015Bliwa rodzina... g\xF3wno prawda. Jest data - 1987."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/MotherLetter
+      TermType: 0
+      Description: 
+      Languages:
+      - Weird letter
+      - Dziwny list
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/MotherLetterDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - Hi Keith, code is [PLACEHOLDER]
+      - Hej Keith, kod to [PLACEHOLDER]
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Pills
+      TermType: 0
+      Description: 
+      Languages:
+      - Pills
+      - Tabletki
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/PillsDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - Can be helpful in case of an injury.
+      - "Mog\u0105 si\u0119 przyda\u0107 w przypadku zranienia."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/WeddingPhoto
+      TermType: 0
+      Description: 
+      Languages:
+      - Photo from my parent's wedding
+      - "Zdj\u0119cie ze \u015Blubu rodzic\xF3w"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/WeddingPhotoDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - There is a date in the corner. The wedding was in 1966.
+      - "W rogu jest data - pobrali si\u0119 w 1966."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/KeyDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - Key
+      - Klucz
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/BrotherPhoto
+      TermType: 0
+      Description: 
+      Languages:
+      - Photo of me and my brother
+      - "Moje zdj\u0119cie z bratem"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/BrotherPhotoDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - I remember this photo. Parents took it in 1979.
+      - "Pami\u0119tam to zdj\u0119cie. Rodzice zrobili je w 1979."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/MotherPhoto
+      TermType: 0
+      Description: 
+      Languages:
+      - Photo with mom
+      - "Zdj\u0119cie z mam\u0105"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Items/Description/MotherPhotoDescription
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Date: 1974. I miss her.'
+      - "Data: 1974. T\u0119skni\u0119 za ni\u0105."
       Flags: 0000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
