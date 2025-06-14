@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private Animator animator;
     private float animationDampTime = 0.1f;
 
+    //Fighting
+    [HideInInspector]public Meele meeleWeapon;
+
     [SerializeField] private GameObject FirePoker;
 
     HeadLook headLook;
@@ -34,11 +37,14 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         headLook = GetComponent<HeadLook>();
 
+        meeleWeapon = GetComponentInChildren<Meele>();
+
         inputManager.OnInteractAction += GameInput_OnInteractAction;
         inputManager.OnAttackAction += InputManager_OnAttackAction;
         inputManager.OnSprintAction += InputManager_OnSprintAction;
         inputManager.OnReadyStart += InputManager_OnReadyStart;
         inputManager.OnReadyFinish += InputManager_OnReadyFinish;
+
     }
 
     private void InputManager_OnReadyStart(object sender, System.EventArgs e)
@@ -59,6 +65,7 @@ public class Player : MonoBehaviour
 
     private void InputManager_OnSprintAction(object sender, System.EventArgs e)
     {
+
         if (!animator.GetBool("isReady"))
         {
             sprinting = true;
@@ -67,7 +74,13 @@ public class Player : MonoBehaviour
 
     private void InputManager_OnAttackAction(object sender, System.EventArgs e)
     {
-        animator.SetTrigger("Attack");
+        if (animator.GetBool("isReady"))
+        {
+            //meeleWeapon.DoDamageToEnemy();
+            animator.SetTrigger("Attack");
+
+            //Do damage to enemy
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -82,6 +95,10 @@ public class Player : MonoBehaviour
         HandleAnimations();
     }
 
+    public void AnimationAttack()
+    {
+        meeleWeapon.DoDamageToEnemy();
+    }
     private void LateUpdate()
     {
         ////Animations; Lock Y position

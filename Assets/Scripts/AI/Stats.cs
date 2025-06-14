@@ -6,14 +6,31 @@ public enum E_States
 }
 public class Stats : MonoBehaviour, IDamagable
 {
+    public enemyAnimController animController;
+    Animator anim;
     public float maxHp;
     public float hp;
     public E_States state;
     [SerializeField] float timeBetweenCanBeStunned = 0.5f;
     public bool canBeStunned = true;
+    public bool isDead = false;
 
+    public MaterialFader materialFader;
+    //Sounds 
+    PlayerAudioManager playerAudio;
+    //EnemyAudioManager enemyAudio;
     void Start()
     {
+        
+        if (gameObject.CompareTag("Player"))
+        {
+            anim = GetComponent<Animator>();
+        }
+        if (gameObject.CompareTag("Enemy"))
+        {
+           
+            
+        }
         hp = maxHp;
         state = E_States.Normal;
         canBeStunned = true;
@@ -22,12 +39,27 @@ public class Stats : MonoBehaviour, IDamagable
     {
         if (gameObject.CompareTag("Player"))
         {
+            playerAudio = GetComponent<PlayerAudioManager>();
+            playerAudio.DamageSound();
+            anim.SetTrigger("gotHit");
             hp = hp - damage;
         }
         else
         {
-            hp = hp - damage;
+            
+            animController.Damage();
+            playerAudio = GetComponent<PlayerAudioManager>();
+            playerAudio.DamageSound();
 
+            if (hp - damage < 0)
+            {
+                hp = 0;
+            }
+            else
+            {
+                hp = hp - damage;
+            }
+         
             if (canBeStunned)
             {
                 canBeStunned = false;
@@ -42,11 +74,6 @@ public class Stats : MonoBehaviour, IDamagable
         }
       
     }
-
-    void UnStun()
-    {
-       
-    }
     void StunReset()
     {
         state = E_States.Normal;
@@ -55,16 +82,16 @@ public class Stats : MonoBehaviour, IDamagable
 
     void Update()
     {
-        if (hp <= 0)
+        if (hp <= 0 && !gameObject.CompareTag("Player") && isDead == false)
         {
-            
-            Destroy(transform.parent.gameObject);
-        }
-    }
+            isDead = true;
 
-    private void OnDestroy()
-    {
-        
+            
+            materialFader.StartFade();
+            playerAudio = GetComponent<PlayerAudioManager>();
+            playerAudio.DeathSound();
+            Destroy(transform.parent.gameObject, playerAudio.death.length);
+        }
     }
 
 }
