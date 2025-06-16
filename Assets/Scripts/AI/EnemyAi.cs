@@ -1,18 +1,18 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyAi : MonoBehaviour
 {
     public float gunSightDistance;
     public int damage;
-
+    public enemyAnimController animController;
     Stats stats;
     public NavMeshAgent agent;
 
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
-
+    bool animationAttack = false;
     RaycastHit hit;
 
     //patrolling
@@ -44,6 +44,7 @@ public class NewBehaviourScript : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         //DistanceToPlayer();
+        animController.speed = agent.velocity.magnitude;
 
         if (stats.state == E_States.Stunned)
         {
@@ -53,21 +54,41 @@ public class NewBehaviourScript : MonoBehaviour
         {
             if (!playerInSightRange && !playerInAttackRange)
             {
+               // Debug.Log("Patrol");
                 Patroling();
             }
             else if (playerInSightRange && !playerInAttackRange)
             {
+                //Debug.Log("Chase");
                 ChasePlayer();
             }
             else
                 if (playerInSightRange && playerInAttackRange)
             {
+               
+                
                 AttackPlayer();
+                //Debug.Log("Attack");
+               
+                
             }
         }
 
     }
 
+    public void AnimationAttack()
+    {
+        Debug.Log("DoDmg");
+        if (playerInAttackRange)
+        {
+            player.GetComponent<Stats>().TakeDamage(damage, 0);
+        }
+        else
+        {
+            Debug.Log("Damnn! I missed");
+        }
+
+    }
     void Patroling()
     {
 
@@ -105,7 +126,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Moøliwe øe nie ustawiono pod≥ogi jako layer Ground");
+            Debug.LogWarning("Mo≈ºliwe ≈ºe nie ustawiono pod≈Çogi jako layer Ground");
         }
 
         //if(Physics.Raycast(transform.position, walkPoint, out hit))
@@ -132,11 +153,9 @@ public class NewBehaviourScript : MonoBehaviour
         transform.LookAt(player);
         if (!alreadyAttacked)
         {
+            animController.Attack();
             ///Attack code here
-            if (player.TryGetComponent<IDamagable>(out IDamagable damagable))
-            {
-                damagable.TakeDamage(damage, 0);
-            }
+            
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAtacks);
@@ -166,7 +185,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (Physics.Raycast(transform.position, player.position, gunSightDistance, whatIsGround))
         {
 
-            //jeúli úciana
+            //je≈ìli ≈ìciana
             //Debug.Log("Wall in between");
         }
         else
