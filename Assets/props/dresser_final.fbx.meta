@@ -3,7 +3,17 @@ guid: 98c4a1de56a3bd0499238097559f163f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cathedral
+    second: {fileID: 2100000, guid: d30188c27a913454cbd40f2d965e9bc0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cathedral__1
+    second: {fileID: 2100000, guid: fcddc0ee5496d014da8835a53cdab9e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

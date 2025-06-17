@@ -3,7 +3,17 @@ guid: 4cbbf724d5449074483f4b55226ca6e9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Toilet
+    second: {fileID: 2100000, guid: 673a1203f004dfb4cb296b39fa20a1a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_ToiletHandle
+    second: {fileID: 2100000, guid: 90d714aedab2eb34db3e36e62919be6d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

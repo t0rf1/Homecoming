@@ -3,7 +3,27 @@ guid: e61d88a4b26d33645a9a1a4efe9105b8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_u_leg
+    second: {fileID: 2100000, guid: 4413dedc11d318947a457ceb3ebbf1e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue
+    second: {fileID: 2100000, guid: 93b8702f417577f4ca74cf48ffc091d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orange
+    second: {fileID: 2100000, guid: fa08c7361852bae4bb996449c5dc0a97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_light
+    second: {fileID: 2100000, guid: 99dcd4dd8abb5ad48bedf3824aba18f1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

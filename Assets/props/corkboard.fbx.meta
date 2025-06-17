@@ -3,7 +3,27 @@ guid: d43c214ddb30ce44dbdd05872f27c5d5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Board
+    second: {fileID: 2100000, guid: bfdbb1291145ae547902358db6d6715e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cards
+    second: {fileID: 2100000, guid: ef679c5dae022424f87b702bd551b5dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pins
+    second: {fileID: 2100000, guid: dcfb16535c6bb93488f5a9b49b19e134, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood.005
+    second: {fileID: 2100000, guid: 0a7de836c09d2204cae80202d33d754a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

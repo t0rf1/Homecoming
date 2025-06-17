@@ -3,7 +3,17 @@ guid: 6bce2eccd533b64438a1d58bd687c953
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_dresser_metal.001
+    second: {fileID: 2100000, guid: 5e955039bd2a9394fb75de0e080e105f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_dresser_wood.001
+    second: {fileID: 2100000, guid: 0173e20eb1ef6104faff53ac941cb323, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,27 @@ guid: 10cfbfd4e2154464c85e9633c000c346
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _BurlyWood_
+    second: {fileID: 2100000, guid: efbbd948755530c43a208da5b9dcbce3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Gainsboro_
+    second: {fileID: 2100000, guid: 39210e408bac30249bd1723b22ae3ef1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Gray_Glass_
+    second: {fileID: 2100000, guid: db58daf3f01f0c544884af2369d495f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _WarmGray6_
+    second: {fileID: 2100000, guid: 4bb6de756c55d1241864780353d43d59, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

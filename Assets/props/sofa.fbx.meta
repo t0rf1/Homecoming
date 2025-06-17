@@ -3,7 +3,32 @@ guid: b309e89b13606164790ce199aa5db826
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pad1TwoSeaterCouch1
+    second: {fileID: 2100000, guid: d3ddcb4aaa769ea43937288cc0219646, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pad2TwoSeaterCouch1
+    second: {fileID: 2100000, guid: a0eb99c911f23394f9d6d1ad33893bab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pad3TwoSeaterCouch1
+    second: {fileID: 2100000, guid: 3a2d1abff63d5584d9b86246e18f3fe7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pad4TwoSeaterCouch1
+    second: {fileID: 2100000, guid: 42f01edc32a5a8040ad394212b092e0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TwoSeaterCouch1
+    second: {fileID: 2100000, guid: 413782d41e3bc0b40b232f4098d2e69d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

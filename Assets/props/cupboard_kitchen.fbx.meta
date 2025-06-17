@@ -3,7 +3,32 @@ guid: e2ff6268d3cfade439da0861b38c3971
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalDoorLeft1_MediumBookShelf1
+    second: {fileID: 2100000, guid: 24b9dfe45c7fe364e86f9680d5b08099, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MetalDoorRight1_MediumBookShelf1
+    second: {fileID: 2100000, guid: 741c8231b8765e34292fadd9231fd06c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodDoorLeft1_MediumBookShelf1
+    second: {fileID: 2100000, guid: 557a2cbd3dc209c4689bc606ddeaf300, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodDoorRight1_MediumBookShelf1
+    second: {fileID: 2100000, guid: 55e6f1193cd6d354598ed61fcd7742f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodMediumBookShelf1
+    second: {fileID: 2100000, guid: bb5f3113acf16bb4486b1a02f0c0b020, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

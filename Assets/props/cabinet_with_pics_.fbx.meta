@@ -3,7 +3,82 @@ guid: d3a3307f08eddaf46a85d80837d0d510
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_blue
+    second: {fileID: 2100000, guid: 2c04e435ce7d79e43a27dc6b38878020, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_blue_actual
+    second: {fileID: 2100000, guid: 1fc13c23965e99c48a86e15c7b53f112, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_door
+    second: {fileID: 2100000, guid: cb38a3f5aba82e6429dc3f5ae0e0ea52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_frame
+    second: {fileID: 2100000, guid: 236a16199f1dfe841bdd5f34b4837f6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_glass
+    second: {fileID: 2100000, guid: 6ef0a9e40ec4adc4a8a34278b7d896e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_gray
+    second: {fileID: 2100000, guid: 14e8df06c0a55454886485505f35468f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_green
+    second: {fileID: 2100000, guid: ef0dc901fe36c684cb826c402d739ce3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_grey
+    second: {fileID: 2100000, guid: 7a772030764b84c49ac76b0a292e632e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_handles
+    second: {fileID: 2100000, guid: 0740b6aa586355343971f160c47fa1ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_idk
+    second: {fileID: 2100000, guid: 992c42509c060604f866abdf10413b88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_mugs
+    second: {fileID: 2100000, guid: 15e186ef794ba0940977b4efb5b1e26a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_orange
+    second: {fileID: 2100000, guid: 1b0530f4272348e4da259ef7206731da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_red
+    second: {fileID: 2100000, guid: 1e04656416a6c3d4a962e14c811a7a45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_teal
+    second: {fileID: 2100000, guid: 6140beac9aa1cd54cb0d796869a88aa0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_cabinet_wood
+    second: {fileID: 2100000, guid: f8699ed8d413c004695a798ba54fe08e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

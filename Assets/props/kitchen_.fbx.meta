@@ -3,7 +3,62 @@ guid: a53b615f303a38f4ab29b4e424d8324a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_blue
+    second: {fileID: 2100000, guid: 293a4dd47b6150e46a9c51f5bf402a34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_counter
+    second: {fileID: 2100000, guid: 3408064f6fdc7e349934e0e44e05c505, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_glass
+    second: {fileID: 2100000, guid: 0fd81e766a4b7344697c9ce717a536e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_handle
+    second: {fileID: 2100000, guid: ca543527a10f1e94d92032451245e1ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_metal
+    second: {fileID: 2100000, guid: 616201b32edb1974daf4d27360494728, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_red
+    second: {fileID: 2100000, guid: c15e71616d0b5984c800c30de668c665, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_stove
+    second: {fileID: 2100000, guid: d71733f660f3fec4cb4f6d91ff974c13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_teal
+    second: {fileID: 2100000, guid: dfda69473d380fe4e8f11c205279af18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_white
+    second: {fileID: 2100000, guid: 16105dbc212e417439345d2a749735f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_wood
+    second: {fileID: 2100000, guid: 92fd95709d3f2ba4db1af8f8729a6013, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_kitchen_wood2
+    second: {fileID: 2100000, guid: b51cf8834104f7d4baf0c01abe28e59f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
