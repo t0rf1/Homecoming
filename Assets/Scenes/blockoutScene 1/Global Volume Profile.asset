@@ -95,13 +95,13 @@ MonoBehaviour:
     m_Value: 30
   aspectMode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 4
   targetRasterizationResolutionWidth:
     m_OverrideState: 1
-    m_Value: 224
+    m_Value: 256
   targetRasterizationResolutionHeight:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 240
   isDepthBufferEnabled:
     m_OverrideState: 0
     m_Value: 1
@@ -328,10 +328,10 @@ MonoBehaviour:
     m_Value: 3
   color:
     m_OverrideState: 0
-    m_Value: {r: 0.574, g: 0.52198243, b: 0.406966, a: 1}
+    m_Value: {r: 0.5471698, g: 0, b: 0, a: 1}
   precisionAlpha:
     m_OverrideState: 0
-    m_Value: 0.264
+    m_Value: 1
   precisionAlphaDitherTexture:
     m_OverrideState: 0
     m_Value: {fileID: 2800000, guid: 4a3e96c03e7d7c34a8fb8f59764f1945, type: 3}
@@ -341,13 +341,13 @@ MonoBehaviour:
     m_Value: 1
   distanceMin:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 3
   distanceMax:
     m_OverrideState: 0
     m_Value: 20
   fogFalloffCurve:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.575
   heightFalloffEnabled:
     m_OverrideState: 0
     m_Value: 0
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   isEnabled:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   weight:
     m_OverrideState: 0
@@ -467,48 +467,48 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   bloom:
-    m_OverrideState: 1
-    m_Value: 0.0625
+    m_OverrideState: 0
+    m_Value: 1
   grateMaskMode:
     m_OverrideState: 1
     m_Value: 0
   grateMaskTexture:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {fileID: 0}
     dimension: 1
   grateMaskScale:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   scanlineSharpness:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.5
   imageSharpness:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.5
   bloomSharpnessX:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   bloomSharpnessY:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   noiseIntensity:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0.03
   noiseSaturation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   grateMaskIntensityMin:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.25
   grateMaskIntensityMax:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.75
   barrelDistortionX:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.125
   barrelDistortionY:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.33333334
   vignette:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.5
