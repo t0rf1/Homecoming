@@ -3,7 +3,27 @@ guid: 4896380f49c6c504b933d1475d4303c2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_Wood1SG
+    second: {fileID: 2100000, guid: a9aa87896f2056c49923d03c7a065a95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_lambert2SG
+    second: {fileID: 2100000, guid: e921911910662ed499ded25691454243, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_lambert3SG
+    second: {fileID: 2100000, guid: e16b06b155625d44b978eb8ef1e21d4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_lambert4SG
+    second: {fileID: 2100000, guid: ba8a3f056495e3040986bc7721fce9cc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

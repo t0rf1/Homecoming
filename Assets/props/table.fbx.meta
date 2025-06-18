@@ -3,7 +3,17 @@ guid: dc0dcd06a5962c84b94350d69d5bd2ac
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_screws
+    second: {fileID: 2100000, guid: 90ce104c3ac89df4d8c1c50b0761866d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_wood_table
+    second: {fileID: 2100000, guid: 3320bfd55ffd01b4699510feba83abac, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

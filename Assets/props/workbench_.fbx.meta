@@ -3,7 +3,82 @@ guid: 7491b36aaa1c0dd439bd41b0195c6cf1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_black
+    second: {fileID: 2100000, guid: 3fba87cd2c8650d4ba9068e2d78e058c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_blue.001
+    second: {fileID: 2100000, guid: 1f7340ac277250748b3da407f291a1e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_blueidk
+    second: {fileID: 2100000, guid: a4f33a78635aa614fb5df8e297ea5895, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_brush_wood
+    second: {fileID: 2100000, guid: 57fc806b50a11024da6c511e5b42a229, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_green.001
+    second: {fileID: 2100000, guid: f184d0aac3accdc4392cfb870e237a92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_lightblue
+    second: {fileID: 2100000, guid: 3429b3ebebf342040a8f373cd3cb6834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_orange
+    second: {fileID: 2100000, guid: e9f65c575dcb00c41bfc324c83cfc5fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_red.001
+    second: {fileID: 2100000, guid: d0e0f75f2da432a4ca8f98b24053c1bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_silver.001
+    second: {fileID: 2100000, guid: 20544d1c39843584d9866060eae6d8d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_silver2
+    second: {fileID: 2100000, guid: d1692405ec7707147a3cd2473537e487, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_white.001
+    second: {fileID: 2100000, guid: 24218b4aad6b1a44e8fdf61714aed3f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_white2
+    second: {fileID: 2100000, guid: 67d0008f1f83fc649a0b57a68b63e01b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_workbench_wood
+    second: {fileID: 2100000, guid: c405c8c874b7a4248b87247de44fc82b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_workbench_wood2
+    second: {fileID: 2100000, guid: fed4a4183bc8dbc4a92cdffa96ee23ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_yellow
+    second: {fileID: 2100000, guid: 36186d02e6363fe45ab5b9718b3d878a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

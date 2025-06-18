@@ -3,7 +3,22 @@ guid: 6eb3a2c84b5cffd49be59716745fc7ab
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cap
+    second: {fileID: 2100000, guid: c856986c3c0fc5344a72e414149856dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: container
+    second: {fileID: 2100000, guid: 8b1ab9775e4c6904f85090bbef4c3109, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pills
+    second: {fileID: 2100000, guid: 93f46f9b7dcfdf448989a4ba5ed6a1b8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

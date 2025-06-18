@@ -3,7 +3,42 @@ guid: 9fd6b948c692ae64fa90065985b52d3a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_blue
+    second: {fileID: 2100000, guid: 796b98a00ff203643b94319c6f36cf45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_body
+    second: {fileID: 2100000, guid: c401470718c827f4fb2b7cd7a739b002, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_green
+    second: {fileID: 2100000, guid: e1cc3c217f2c81c44b78ca089b55e0b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_red
+    second: {fileID: 2100000, guid: 4dbaea7e6550de043b73fc84dceb8b9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_silver
+    second: {fileID: 2100000, guid: 50dbd48476bb7d041871e7c9f978d87f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_white
+    second: {fileID: 2100000, guid: 34c6f65136c52a24599162f50db66626, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_wood
+    second: {fileID: 2100000, guid: dc57bb59e1e10bc4081beefce4b6d565, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

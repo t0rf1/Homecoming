@@ -3,7 +3,22 @@ guid: 7707882d8f5f5c545ad126b0a6f7c1d7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_armchair
+    second: {fileID: 2100000, guid: e6efc2e6a43f0a846b0f85c60c7400bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_legs
+    second: {fileID: 2100000, guid: 70e62ccb49e638f48b366d1cbdae60b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_pad
+    second: {fileID: 2100000, guid: d71f07c9208291d478d274eeb58a32e3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

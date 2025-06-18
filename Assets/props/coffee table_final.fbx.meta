@@ -3,7 +3,12 @@ guid: 5d344b8a50771934c910d1f5be48422e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodRoundedCoffeTable1
+    second: {fileID: 2100000, guid: 85608a2e2f6c5c14685dc6b88064869d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

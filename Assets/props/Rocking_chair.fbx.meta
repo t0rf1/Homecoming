@@ -3,7 +3,17 @@ guid: fa27cc4e7dfbc2347a3f0d9f0413329b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_rockingchair_pillow
+    second: {fileID: 2100000, guid: 4b07b8f137a69144689516c9d9afef96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MAT_rockingchair_wood
+    second: {fileID: 2100000, guid: 9251e9606013e0b40947f49e28eb7a2d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

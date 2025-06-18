@@ -3,7 +3,52 @@ guid: 5b41a58143f629c478e670ab6393fe5c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Basic
+    second: {fileID: 2100000, guid: 205711deb17608b4b900fb5d4d0dc0c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush1
+    second: {fileID: 2100000, guid: cecd3e37d65955244866c19a542ea785, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush1_1
+    second: {fileID: 2100000, guid: 2a9206e146762274bb82fd3c33462419, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush2
+    second: {fileID: 2100000, guid: 5aea2661917da3e439d7e4c820cf4625, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush2_1
+    second: {fileID: 2100000, guid: 171f2fa28f501054ba4a38d7dd72bd9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush3
+    second: {fileID: 2100000, guid: 7e1c7bddfc020054d8858ba22d4db7d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cush3_1
+    second: {fileID: 2100000, guid: 58fd443636bc66044bb5a300345dee8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cushi
+    second: {fileID: 2100000, guid: aa2afc868ad7fe74eadb473facb38eb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat_Cushi_1
+    second: {fileID: 2100000, guid: 88a3071dfd9f8b34e9603f9d21804b47, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
