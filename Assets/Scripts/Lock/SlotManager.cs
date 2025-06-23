@@ -29,11 +29,11 @@ public class SlotManager : MonoBehaviour
         //    selectedSlot = 2;
 
         //}
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if(selectedSlot == 0)
             {
-                selectedSlot = 2;
+                selectedSlot = 3;
             }
             else
             {
@@ -41,9 +41,9 @@ public class SlotManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            if (selectedSlot == 2)
+            if (selectedSlot == 3)
             {
                 selectedSlot = 0;
             }
@@ -60,11 +60,11 @@ public class SlotManager : MonoBehaviour
             SelectSlot();
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             ChangeValue(1);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             ChangeValue(-1);
         }
@@ -80,12 +80,12 @@ public class SlotManager : MonoBehaviour
             {
                 var slot = child.GetComponent<Slot>();
                 activeSlot = slot;
-                slot.textNumber.color = Color.cyan;
+                slot.textNumber.color = Color.white;
                 //Debug.Log(child.name);
             }
             else
             {
-                child.GetComponent<Slot>().textNumber.color = Color.black; ;
+                child.GetComponent<Slot>().textNumber.color = Color.gray; ;
             }
 
             i++;

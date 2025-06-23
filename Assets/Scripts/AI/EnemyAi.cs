@@ -126,7 +126,7 @@ public class EnemyAi : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Możliwe że nie ustawiono podłogi jako layer Ground");
+            //Debug.LogWarning("Możliwe że nie ustawiono podłogi jako layer Ground");
         }
 
         //if(Physics.Raycast(transform.position, walkPoint, out hit))

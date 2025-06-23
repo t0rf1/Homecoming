@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 public class Lock : MonoBehaviour
 {
+     public Doors doorToUnlock;
     UiManager uiManager;
     public GameObject player;
     public string code;
@@ -16,7 +17,7 @@ public class Lock : MonoBehaviour
     {
         isLocked = true;
         uiManager = GameObject.Find("UiCanvas").GetComponent<UiManager>();
-        code = "392";
+        code = "6497";
     }
 
     // Update is called once per frame
@@ -105,6 +106,7 @@ public class Lock : MonoBehaviour
     }
     void UnlockLock()
     {
+        doorToUnlock.locked = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 

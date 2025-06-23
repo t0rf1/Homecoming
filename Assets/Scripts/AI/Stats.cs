@@ -15,6 +15,9 @@ public class Stats : MonoBehaviour, IDamagable
     public bool canBeStunned = true;
     public bool isDead = false;
 
+    [Header("Spawned Object After Death")]
+    public GameObject objectToSpawnAfterDeath;
+
     public MaterialFader materialFader;
     //Sounds 
     PlayerAudioManager playerAudio;
@@ -86,7 +89,7 @@ public class Stats : MonoBehaviour, IDamagable
         {
             isDead = true;
 
-            
+            SpawnObject(objectToSpawnAfterDeath, transform.position, Quaternion.identity);
             materialFader.StartFade();
             playerAudio = GetComponent<PlayerAudioManager>();
             playerAudio.DeathSound();
@@ -94,4 +97,9 @@ public class Stats : MonoBehaviour, IDamagable
         }
     }
 
+    void SpawnObject(GameObject objToSpawn, Vector3 position, Quaternion rotation)
+    {
+        Instantiate(objToSpawn, position, rotation);
+        
+    }
 }

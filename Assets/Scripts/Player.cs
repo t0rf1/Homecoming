@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     //Walking
     private CharacterController characterController;
     private InputManager inputManager;
+    private Stats stats;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotateSpeed = .5f;
     Vector2 movementVector;
@@ -36,7 +39,8 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         headLook = GetComponent<HeadLook>();
-
+        
+        stats = GetComponent<Stats>();
         meeleWeapon = GetComponentInChildren<Meele>();
 
         inputManager.OnInteractAction += GameInput_OnInteractAction;
@@ -90,9 +94,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
+        if(stats.isDead == false)
+        {
+            HandleMovement();
 
-        HandleAnimations();
+            HandleAnimations();
+
+        }
+        
+
     }
 
     public void AnimationAttack()
@@ -195,5 +205,13 @@ public class Player : MonoBehaviour
     public void SetLookTarget(Transform target)
     {
         headLook.targetObject = target;
+    }
+
+    public void Teleport( Vector3 newPosition)
+    {
+        characterController.enabled = false;
+        transform.localPosition = newPosition;
+        characterController.enabled = true;
+        
     }
 }
