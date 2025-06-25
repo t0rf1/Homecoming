@@ -96,6 +96,7 @@ public class InventoryManager : MonoBehaviour
 
     public void TurnOffInventory()
     {
+        DeactivateCommands();
         Time.timeScale = 1f;
         inspectPanel.gameObject.SetActive(false);
         InventoryMenu.SetActive(false);
@@ -152,7 +153,7 @@ public class InventoryManager : MonoBehaviour
     public void InspectItem()
     {
         inspectPanel.gameObject.SetActive(true);
-
+        DeactivateCommands();
         EventSystem.current.SetSelectedGameObject(inspectPanel.gameObject);
     }
 
