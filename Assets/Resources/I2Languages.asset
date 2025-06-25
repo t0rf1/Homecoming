@@ -46,7 +46,7 @@ MonoBehaviour:
       Description: 
       Languages:
       - Inspect
-      - Inspektuj
+      - Zbadaj
       Flags: 0000
       Languages_Touch: []
     - Term: Commands/Use
@@ -62,7 +62,7 @@ MonoBehaviour:
       Description: 
       Languages:
       - Equip
-      - Wyekwipuj
+      - Ekwipuj
       Flags: 0000
       Languages_Touch: []
     - Term: Doors/DoorUnlocked
@@ -70,7 +70,7 @@ MonoBehaviour:
       Description: 
       Languages:
       - I unlocked the door
-      - "Odblokowa\u0142em drzwi"
+      - "Otworzy\u0142em drzwi"
       Flags: 0000
       Languages_Touch: []
     - Term: Items/KeyDescription
@@ -85,7 +85,7 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - These doors seems to be locked
+      - This door seems to be locked
       - "Te drzwi s\u0105 zamkni\u0119te na klucz"
       Flags: 0000
       Languages_Touch: []
@@ -101,7 +101,7 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - I cannot use that now
+      - I can't use that now
       - "Nie mog\u0119 teraz tego u\u017Cy\u0107"
       Flags: 0000
       Languages_Touch: []
@@ -133,7 +133,7 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - I can't open these doors
+      - I can't open this door
       - "Nie mog\u0119 otworzy\u0107 tych drzwi"
       Flags: 0000
       Languages_Touch: []
@@ -165,8 +165,10 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - Hi Keith, code is [PLACEHOLDER]
-      - Hej Keith, kod to [PLACEHOLDER]
+      - A letter from mom... She says the code for the dining room closet is 1968.
+        The year of my birth...
+      - "List od mamy... Pisze, \u017Ce kod do schowka w kuchni to 1968. Rok moich
+        urodzin..."
       Flags: 0000
       Languages_Touch: []
     - Term: Items/Pills
@@ -221,7 +223,7 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - I remember this photo. Parents took it in 1979.
+      - I remember this photo. My parents took it in 1979.
       - "Pami\u0119tam to zdj\u0119cie. Rodzice zrobili je w 1979."
       Flags: 0000
       Languages_Touch: []
